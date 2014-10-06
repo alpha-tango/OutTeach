@@ -1,13 +1,8 @@
 require 'rails_helper'
 
 feature 'add a new element' do
-  scenario 'add a valid element' do
+  scenario 'add a valid element'
 
+  scenario 'add a blank element'
 
-  end
-
-  scenario 'add a blank element' do
-
-
-  end
 end

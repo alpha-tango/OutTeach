@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'add a new course', focus: true do
+feature 'add a new course' do
   scenario 'add a valid course' do
     visit new_course_path
 

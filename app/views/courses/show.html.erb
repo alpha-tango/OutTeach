@@ -2,3 +2,14 @@
 <h2><%= @course.title %></h2>
   <%= @course.subject %><br>
   <%= @course.description %>
+
+<h3>Add a new assignment</h3>
+<%= form_for [@course, @assignment] do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

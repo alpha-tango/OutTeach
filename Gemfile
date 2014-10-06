@@ -31,6 +31,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'shoulda'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password
