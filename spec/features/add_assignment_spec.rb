@@ -18,5 +18,11 @@ feature 'add a new assignment' do
     expect(page).to have_content("Assignment1")
   end
 
-  scenario 'add a blank assignment'
+  scenario 'add a blank assignment' do
+    visit course_path(@course)
+
+    click_button "Create Assignment"
+
+    expect(page).to have_content("Title can't be blank")
+  end
 end
