@@ -4,4 +4,9 @@ FactoryGirl.define do
     subject "Interwebs"
     description "So much interwebs info oh wow."
   end
+
+  factory :assignment do
+    sequence(:title) { |n| "Interwebs Part #{ n }" }
+    association :course
+  end
 end
