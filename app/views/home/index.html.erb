@@ -1,0 +1,6 @@
+<h3> Recently added courses: </h3>
+  <ul>
+    <% @courses.each do |course| %>
+      <li><%= course.title %></li>
+    <% end %>
+  </ul>
