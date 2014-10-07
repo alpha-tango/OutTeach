@@ -47,12 +47,26 @@ feature 'add a new element' do
     fill_in "Citation", with: "The most badass source"
     click_button "Create Element"
 
-    save_and_open_page
-
     within('div.image') do
       expect(page).to have_css("img[src=\"http://example.jpg\"]")
       expect(page).to have_content("The most badass source")
       expect(page).to have_content("Picture Title")
+    end
+  end
+
+  scenario 'add a valid video element' do
+    visit course_assignment_path(@assignment.course, @assignment)
+
+    fill_in "Title", with: "Video Title"
+    select "Video", from: "element_type_id"
+    fill_in "Url", with: "http://example.jpg"
+    fill_in "Citation", with: "The most badass source"
+    click_button "Create Element"
+
+    within('div.video') do
+      expect(page).to have_css("iframe[src=\"http://example.jpg\"]")
+      expect(page).to have_content("The most badass source")
+      expect(page).to have_content("Video Title")
     end
   end
 
