@@ -1,3 +1,5 @@
+<%= link_to "Back to course view", course_path(@assignment.course), class: 'button' %>
+<%= link_to "Back to all courses", courses_path, class: 'button' %>
 
 <h2> <%= @assignment.course.title %> </h2>
 <h3> <%= @assignment.title %> </h3>
@@ -19,13 +21,13 @@
     <% elsif element.type_id == 3 %>
       <div class="image">
         <h4> <%= element.title %> </h4>
-        <img src=<%= "#{element.url}" %>></img>
+        <%= image_tag(element.url) %><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 4 %>
       <div class="video">
         <h4> <%= element.title %> </h4>
-        <iframe src=<%= "#{element.url}" %>></img>
+        <iframe src=<%= "#{element.url}" %>></iframe><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 5 %>
@@ -44,11 +46,11 @@
   <%= form_for [@assignment.course, @assignment, @element] do |f| %>
     <% if @element.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
 
       <ul>
       <% @element.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="alert-box secondary"><%= msg %></li>
       <% end %>
       </ul>
     </div>
@@ -74,7 +76,7 @@
       <%= f.text_field :citation %>
     </p>
     <p>
-      <%= f.submit %>
+      <%= f.submit "Create Element", class: 'button' %>
     </p>
   <% end %>
 </div>

@@ -1,11 +1,14 @@
+<%= link_to "Back to all courses", courses_path, class: 'button' %>
+
+<h3> Add a course </h3>
 <%= form_for @course do |f| %>
   <% if @course.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@course.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <p class="alert-box alert"><%= pluralize(@course.errors.count, "error") %> prohibited this post from being saved:</p>
 
     <ul>
     <% @course.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li class="alert-box secondary"><%= msg %></li>
     <% end %>
     </ul>
   </div>
@@ -24,6 +27,6 @@
     <%= f.text_area :description %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Create Course', class: 'button' %>
   </p>
 <% end %>

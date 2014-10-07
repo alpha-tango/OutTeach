@@ -8,13 +8,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-
-  <div>
-    <h1><%= link_to "OUT-TEACH", root_path %></h1>
-  </div>
+    <div>
+      <h1><%= link_to "OUT-TEACH", root_path %></h1>
+    </div>
 
   <ul class="right">
     <% if user_signed_in? %>
@@ -27,6 +23,11 @@
       </li>
     <% end %>
   </ul>
+
+  <% if flash[:notice] %>
+    <br>
+    <div class="alert-box success radius"><%= flash[:notice] %></div>
+  <% end %>
 
 <%= yield %>
 
