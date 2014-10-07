@@ -16,6 +16,12 @@
         <p> <%= element.content %> <p>
         <strong> <%= element.citation %> </strong>
       </div>
+    <% elsif element.type_id == 3 %>
+      <div class="image">
+        <h4> <%= element.title %> </h4>
+        <img src=<%= "#{element.url}" %>></img>
+        <strong> <%= element.citation %> </strong>
+      </div>
     <% end %>
   <% end %>
 <% end %>
@@ -39,11 +45,15 @@
   <% end %>
     <p>
       <%= f.label :type_id, "Element Type" %>
-      <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2]] %>
+      <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3]] %>
     </p>
     <p>
       <%= f.label :title %>
       <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :url %>
+      <%= f.text_field :url %>
     </p>
     <p>
       <%= f.label :content %>

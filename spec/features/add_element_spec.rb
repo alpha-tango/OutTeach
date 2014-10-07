@@ -38,6 +38,24 @@ feature 'add a new element' do
     end
   end
 
+  scenario 'add a valid image element' do
+    visit course_assignment_path(@assignment.course, @assignment)
+
+    fill_in "Title", with: "Picture Title"
+    select "Image", from: "element_type_id"
+    fill_in "Url", with: "http://example.jpg"
+    fill_in "Citation", with: "The most badass source"
+    click_button "Create Element"
+
+    save_and_open_page
+
+    within('div.image') do
+      expect(page).to have_css("img[src=\"http://example.jpg\"]")
+      expect(page).to have_content("The most badass source")
+      expect(page).to have_content("Picture Title")
+    end
+  end
+
   scenario 'add a blank element' do
     visit course_assignment_path(@assignment.course, @assignment)
 
