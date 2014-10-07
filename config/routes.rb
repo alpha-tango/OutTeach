@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: "home#index"
+  root "home#index"
 
   resources :courses, only: [:new, :index, :create, :show] do
     resources :assignments, only: [:new, :create, :index, :show] do
