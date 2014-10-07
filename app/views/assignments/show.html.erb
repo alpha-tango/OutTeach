@@ -1,3 +1,47 @@
 
 <h2> <%= @assignment.course.title %> </h2>
 <h3> <%= @assignment.title %> </h3>
+
+<% if @assignment.elements.any? %>
+  <% @assignment.elements.each do |element| %>
+    <h4> <%= element.title %> </h4>
+    <p> <%= element.content %> <p>
+    <strong> <%= element.citation %> </strong>
+  <% end %>
+<% end %>
+
+
+<h4> Add a new assignment element </h4>
+<div id=text_element>
+  <h5>Add a new text element </h5>
+
+  <%= form_for [@assignment.course, @assignment, @element] do |f| %>
+    <% if @element.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @element.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+    </p>
+    <p>
+      <%= f.label :citation %>
+      <%= f.text_field :citation %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+
+</div>
