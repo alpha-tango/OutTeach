@@ -18,6 +18,7 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find(params[:id])
+    @element = Element.new
   end
 
 end
