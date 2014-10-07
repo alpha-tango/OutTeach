@@ -79,8 +79,6 @@ feature 'add a new element' do
     fill_in "Citation", with: "The most badass source"
     click_button "Create Element"
 
-    save_and_open_page
-
     within('div.markdown') do
       expect(page).to have_content("During this three-hour workshop")
       expect(page).to have_css("code")
