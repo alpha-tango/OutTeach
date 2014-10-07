@@ -1,0 +1,16 @@
+<h3> Recently added courses: </h3>
+  <ul>
+    <% @courses.each do |course| %>
+      <li><%= course.title %></li>
+    <% end %>
+  </ul>
+
+  <% if user_signed_in? %>
+    <%= link_to "View all courses", courses_path, class: 'button' %>
+  <% else %>
+    <h4>
+      <%= link_to "Log in", new_user_session_path %> or
+      <%= link_to "Sign up", new_user_registration_path %>
+      to view more courses or add your own
+    </h4>
+  <% end %>

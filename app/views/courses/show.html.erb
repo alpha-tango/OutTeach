@@ -1,17 +1,26 @@
+<%= link_to "Back to all courses", courses_path, class: 'button' %>
 
 <h2><%= @course.title %></h2>
   <%= @course.subject %><br>
-  <%= @course.description %>
+  <%= @course.description %><br>
+
+  <% if @course.assignments.any? %>
+    <% @course.assignments.each do |assignment| %>
+      <li>
+        <%= link_to assignment.title, course_assignment_path(@course, assignment) %>
+      </li>
+    <% end %>
+  <% end %>
 
 <h3>Add a new assignment</h3>
 <%= form_for [@course, @assignment] do |f| %>
   <% if @assignment.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <p class="alert-box alert"><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</p>
 
     <ul>
     <% @assignment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li class="alert-box secondary"><%= msg %></li>
     <% end %>
     </ul>
   </div>
@@ -21,6 +30,6 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Create Assignment", class: 'button' %>
   </p>
 <% end %>
