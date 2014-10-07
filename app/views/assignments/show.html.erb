@@ -4,9 +4,19 @@
 
 <% if @assignment.elements.any? %>
   <% @assignment.elements.each do |element| %>
-    <h4> <%= element.title %> </h4>
-    <p> <%= element.content %> <p>
-    <strong> <%= element.citation %> </strong>
+    <% if element.type_id == 1 %>
+      <div class="text">
+        <h4> <%= element.title %> </h4>
+        <p> <%= element.content %> <p>
+        <strong> <%= element.citation %> </strong>
+      </div>
+    <% elsif element.type_id == 2 %>
+      <div class="tipbox">
+        <h4> <%= element.title %> </h4>
+        <p> <%= element.content %> <p>
+        <strong> <%= element.citation %> </strong>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -27,6 +37,10 @@
       </ul>
     </div>
   <% end %>
+    <p>
+      <%= f.label :type_id, "Element Type" %>
+      <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2]] %>
+    </p>
     <p>
       <%= f.label :title %>
       <%= f.text_field :title %>

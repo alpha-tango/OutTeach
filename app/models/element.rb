@@ -1,5 +1,5 @@
 class Element < ActiveRecord::Base
   belongs_to :assignment
 
-  validates :title, :citation, :assignment, presence: true
+  validates :title, :citation, :assignment, :type_id, presence: true
 end
