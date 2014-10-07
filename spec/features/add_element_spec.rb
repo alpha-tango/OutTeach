@@ -11,7 +11,7 @@ feature 'add a new element' do
 
     fill_in "Title", with: "Workshop"
     select "Text", from: "element_type_id"
-    fill_in "Content", with: "During this three-hour workshop"
+    fill_in "Content", with: "During this three-hour workshop we'll look at `markdown support`"
     fill_in "Citation", with: "The most badass source"
     click_button "Create Element"
 
@@ -67,6 +67,25 @@ feature 'add a new element' do
       expect(page).to have_css("iframe[src=\"http://example.jpg\"]")
       expect(page).to have_content("The most badass source")
       expect(page).to have_content("Video Title")
+    end
+  end
+
+  scenario 'add a valid markdown element' do
+    visit course_assignment_path(@assignment.course, @assignment)
+
+    fill_in "Title", with: "Markdown Title"
+    select "Markdown", from: "element_type_id"
+    fill_in "Content", with: "During this three-hour workshop we'll look at `markdown support`"
+    fill_in "Citation", with: "The most badass source"
+    click_button "Create Element"
+
+    save_and_open_page
+
+    within('div.markdown') do
+      expect(page).to have_content("During this three-hour workshop")
+      expect(page).to have_css("code")
+      expect(page).to have_content("The most badass source")
+      expect(page).to have_content("Markdown Title")
     end
   end
 
