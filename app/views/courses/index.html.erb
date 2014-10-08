@@ -4,6 +4,7 @@
   <% @courses.each do |course| %>
     <li>
       <%= link_to course.title, course_path(course) %>
+      by <%= link_to course.user.name, user_path(course.user) %>
       <p>
         <%= course.description %>
       </p>

@@ -1,0 +1,18 @@
+<h2><%= @user.name %></h2>
+member since: <%= @user.created_at %><br>
+
+courses authored:<br>
+<% if @user.courses.any? %>
+  <ul>
+    <% @user.courses.each do |course| %>
+      <li><%= link_to course.title, course_path(course) %></li>
+    <% end %>
+  </ul>
+<% else %>
+   <% if @user == current_user %>
+    You haven't created any courses yet!
+    <%= link_to "Make one", new_course_path %> now?
+   <% else %>
+    This user hasn't authored any courses yet!
+   <% end %>
+<% end %>
