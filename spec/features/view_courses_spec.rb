@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'users views courses' do
   before(:each) do
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
     @courses = FactoryGirl.create_list(:course, 3)
   end
   scenario 'user views a list of courses' do

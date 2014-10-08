@@ -20,6 +20,9 @@ feature 'user adds a new course' do
   end
 
   scenario 'add a blank course' do
+    user = FactoryGirl.create(:user)
+    course = FactoryGirl.build(:course)
+    sign_in_as(user)
     visit new_course_path
 
     click_button "Create Course"

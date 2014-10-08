@@ -3,87 +3,93 @@ require 'rails_helper'
 feature 'add a new element' do
 
   before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in_as (@user)
     @assignment = FactoryGirl.create(:assignment)
   end
 
   scenario 'add a valid text element' do
+    element = FactoryGirl.build(:text_element)
     visit course_assignment_path(@assignment.course, @assignment)
 
-    fill_in "Title", with: "Workshop"
+    fill_in "Title", with: element.title
     select "Text", from: "element_type_id"
-    fill_in "Content", with: "During this three-hour workshop we'll look at `markdown support`"
-    fill_in "Citation", with: "The most badass source"
+    fill_in "Content", with: element.content
+    fill_in "Citation", with: element.citation
     click_button "Create Element"
 
     within('div.text') do
-      expect(page).to have_content("During this three-hour workshop")
-      expect(page).to have_content("The most badass source")
-      expect(page).to have_content("Workshop")
+      expect(page).to have_content(element.title)
+      expect(page).to have_content(element.content)
+      expect(page).to have_content(element.citation)
     end
   end
 
   scenario 'add a valid tipbox element' do
+    element = FactoryGirl.build(:tipbox_element)
     visit course_assignment_path(@assignment.course, @assignment)
 
-    fill_in "Title", with: "Tipbox Title"
+    fill_in "Title", with: element.title
     select "Tipbox", from: "element_type_id"
-    fill_in "Content", with: "This is a definition"
-    fill_in "Citation", with: "The most badass source"
+    fill_in "Content", with: element.content
+    fill_in "Citation", with: element.citation
     click_button "Create Element"
 
     within('div.tipbox') do
-      expect(page).to have_content("definition")
-      expect(page).to have_content("The most badass source")
-      expect(page).to have_content("Tipbox Title")
+      expect(page).to have_content(element.title)
+      expect(page).to have_content(element.content)
+      expect(page).to have_content(element.citation)
     end
   end
 
   scenario 'add a valid image element' do
+    element = FactoryGirl.build(:image_element)
     visit course_assignment_path(@assignment.course, @assignment)
 
-    fill_in "Title", with: "Picture Title"
+    fill_in "Title", with: element.title
     select "Image", from: "element_type_id"
-    fill_in "Url", with: "http://example.jpg"
-    fill_in "Citation", with: "The most badass source"
+    fill_in "Url", with: element.url
+    fill_in "Citation", with: element.citation
     click_button "Create Element"
 
     within('div.image') do
-      expect(page).to have_css("img[src=\"http://example.jpg\"]")
-      expect(page).to have_content("The most badass source")
-      expect(page).to have_content("Picture Title")
+      expect(page).to have_css("img[src=\"#{element.url}\"]")
+      expect(page).to have_content(element.title)
+      expect(page).to have_content(element.citation)
     end
   end
 
   scenario 'add a valid video element' do
+    element = FactoryGirl.build(:video_element)
     visit course_assignment_path(@assignment.course, @assignment)
 
-    fill_in "Title", with: "Video Title"
+    fill_in "Title", with: element.title
     select "Video", from: "element_type_id"
-    fill_in "Url", with: "http://example.jpg"
-    fill_in "Citation", with: "The most badass source"
+    fill_in "Url", with: element.url
+    fill_in "Citation", with: element.citation
     click_button "Create Element"
 
     within('div.video') do
-      expect(page).to have_css("iframe[src=\"http://example.jpg\"]")
-      expect(page).to have_content("The most badass source")
-      expect(page).to have_content("Video Title")
+      expect(page).to have_css("iframe[src=\"#{element.url}\"]")
+      expect(page).to have_content(element.title)
+      expect(page).to have_content(element.citation)
     end
   end
 
   scenario 'add a valid markdown element' do
+    element = FactoryGirl.build(:markdown_element)
     visit course_assignment_path(@assignment.course, @assignment)
 
-    fill_in "Title", with: "Markdown Title"
+    fill_in "Title", with: element.title
     select "Markdown", from: "element_type_id"
-    fill_in "Content", with: "During this three-hour workshop we'll look at `markdown support`"
-    fill_in "Citation", with: "The most badass source"
+    fill_in "Content", with: element.content
+    fill_in "Citation", with: element.citation
     click_button "Create Element"
 
     within('div.markdown') do
-      expect(page).to have_content("During this three-hour workshop")
+      expect(page).to have_content(element.title)
+      expect(page).to have_content(element.citation)
       expect(page).to have_css("code")
-      expect(page).to have_content("The most badass source")
-      expect(page).to have_content("Markdown Title")
     end
   end
 
