@@ -1,6 +1,29 @@
 <%= link_to "Back to all courses", courses_path, class: 'button' %>
 
 <h2><%= @course.title %></h2>
+
+  <% if @course.user == current_user %>
+    <ul class="button-group">
+      <li>
+        <%= link_to "Delete Course",
+            course_path(@course),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to delete this course and all its assignments?' },
+            class: 'button' %>
+      </li>
+      <li>
+        <%= link_to "Update Course Info",
+            edit_course_path(@course),
+            class: 'button' %>
+      </li>
+    </ul>
+  <% else %>
+    <p>
+      created by: <%= @course.user.name %><br>
+      last updated at: <%= @course.updated_at %>
+    </p>
+  <% end %>
+
   <%= @course.subject %><br>
   <%= @course.description %><br>
 

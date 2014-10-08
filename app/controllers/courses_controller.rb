@@ -21,6 +21,32 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.authorized_find(current_user, params[:id])
+    if @course.destroy
+      redirect_to courses_path
+      flash[:notice] = "You've successfully deleted this course."
+    else
+      render :show
+      flash[:alert] = "Error! Course was not deleted."
+    end
+  end
+
+  def edit
+    @course = Course.authorized_find(current_user, params[:id])
+  end
+
+  def update
+    @course = Course.authorized_find(current_user, params[:id])
+
+    if @course.update(course_params)
+      redirect_to course_path(@course)
+      flash[:notice] = "Your changes have been saved."
+    else
+      render :edit
+    end
+  end
+
   def course_params
     params.require(:course).permit(:title, :description, :subject)
   end
