@@ -25,7 +25,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:id])
-    if @assignment.destroy
+    if @assignment.course.user == current_user && @assignment.destroy
       redirect_to course_path(@assignment.course)
       flash[:notice] = "Assignment deleted"
     else
