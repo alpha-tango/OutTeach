@@ -19,7 +19,7 @@
     </ul>
   <% else %>
     <p>
-      created by: <%= @course.user.name %><br>
+      created by: <%= link_to @course.user.name, user_path(@course.user) %><br>
       last updated at: <%= @course.updated_at %>
     </p>
   <% end %>
