@@ -1,6 +1,6 @@
 class ElementsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @element = Element.new
   end
@@ -15,6 +15,19 @@ class ElementsController < ApplicationController
       redirect_to course_assignment_path(@assignment.course, @assignment)
     else
       render 'assignments/show'
+    end
+  end
+
+  def destroy
+    element = Element.find(params[:id])
+    if element.assignment.course.user == current_user
+      @element = element
+    end
+    if @element.destroy
+      redirect_to course_assignment_path(@element.assignment.course, @element.assignment)
+      flash[:notice]="Element deleted"
+    else
+      render :show
     end
   end
 

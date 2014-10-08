@@ -26,30 +26,35 @@
     <% if element.type_id == 1 %>
       <div class="text">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <p> <%= element.content %> <p>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 2 %>
       <div class="tipbox">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= element.content %>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 3 %>
       <div class="image">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= image_tag(element.url) %><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 4 %>
       <div class="video">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <iframe src=<%= "#{element.url}" %>></iframe><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 5 %>
       <div class="markdown">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= kramdown(element.content) %>
         <strong> <%= element.citation %> </strong>
       </div>
