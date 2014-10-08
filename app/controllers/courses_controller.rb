@@ -21,6 +21,17 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    if @course.destroy
+      redirect_to courses_path
+      flash[:notice] = "You've successfully deleted this course."
+    else
+      render 'course/show'
+      flash[:alert] = "Error! Course was not deleted."
+    end
+  end
+
   def course_params
     params.require(:course).permit(:title, :description, :subject)
   end
