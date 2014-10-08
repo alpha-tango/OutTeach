@@ -1,8 +1,15 @@
 FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "sun.#{n}@meg.com" }
+    sequence(:name) { |n| "sun.#{n}.meg" }
+    password "12345678"
+  end
+
   factory :course do
     title "All About Interwebs"
     subject "Interwebs"
     description "So much interwebs info oh wow."
+    association :user
   end
 
   factory :assignment do
