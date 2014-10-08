@@ -6,4 +6,8 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :subject, presence: true
   validates :user, presence: true
+
+  def self.authorized_find(user, id)
+    where(user: user).find(id)
+  end
 end

@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(params[:id])
+    @course = Course.authorized_find(current_user, params[:id])
     if @course.destroy
       redirect_to courses_path
       flash[:notice] = "You've successfully deleted this course."
@@ -33,11 +33,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:id])
+    @course = Course.authorized_find(current_user, params[:id])
   end
 
   def update
-    @course = Course.find(params[:id])
+    @course = Course.authorized_find(current_user, params[:id])
 
     if @course.update(course_params)
       redirect_to course_path(@course)

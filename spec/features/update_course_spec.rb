@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'user updates a course', focus: true do
+feature 'user updates a course' do
   scenario 'add a valid course' do
     course = FactoryGirl.create(:course)
     sign_in_as(course.user)
@@ -12,7 +12,7 @@ feature 'user updates a course', focus: true do
 
     click_button "Update Course"
 
-    expect(page).to have_content("successfully")
+    expect(page).to have_content("changes have been saved")
     expect(page).to have_content("new title")
     expect(page).to have_content("new subject")
     expect(page).to have_content("new description")
@@ -22,6 +22,10 @@ feature 'user updates a course', focus: true do
     course = FactoryGirl.create(:course)
     sign_in_as(course.user)
     visit edit_course_path(course)
+
+    fill_in "Title", with: ""
+    fill_in "Subject", with: ""
+    fill_in "Description", with: ""
 
     click_button "Update Course"
 
