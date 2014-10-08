@@ -1,4 +1,6 @@
 class ElementsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @element = Element.new
   end

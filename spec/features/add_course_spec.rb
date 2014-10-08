@@ -1,22 +1,28 @@
 require "rails_helper"
 
-feature 'add a new course' do
+feature 'user adds a new course' do
   scenario 'add a valid course' do
+    user = FactoryGirl.create(:user)
+    course = FactoryGirl.build(:course)
+    sign_in_as(user)
     visit new_course_path
 
-    fill_in "Title", with: "Test1"
-    fill_in "Subject", with: "Javawebs"
-    fill_in "Description", with: "Teaches all the webs"
+    fill_in "Title", with: course.title
+    fill_in "Subject", with: course.subject
+    fill_in "Description", with: course.description
 
     click_button "Create Course"
 
     expect(page).to have_content("successfully")
-    expect(page).to have_content("Test1")
-    expect(page).to have_content("Javawebs")
-    expect(page).to have_content("Teaches all the webs")
+    expect(page).to have_content(course.title)
+    expect(page).to have_content(course.title)
+    expect(page).to have_content(course.description)
   end
 
   scenario 'add a blank course' do
+    user = FactoryGirl.create(:user)
+    course = FactoryGirl.build(:course)
+    sign_in_as(user)
     visit new_course_path
 
     click_button "Create Course"

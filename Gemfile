@@ -33,6 +33,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'pry-rails'
+  gem "dotenv-rails"
   gem 'launchy'
 end
 
