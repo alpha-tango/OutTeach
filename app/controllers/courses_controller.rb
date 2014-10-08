@@ -27,8 +27,23 @@ class CoursesController < ApplicationController
       redirect_to courses_path
       flash[:notice] = "You've successfully deleted this course."
     else
-      render 'course/show'
+      render :show
       flash[:alert] = "Error! Course was not deleted."
+    end
+  end
+
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+
+    if @course.update(course_params)
+      redirect_to course_path(@course)
+      flash[:notice] = "Your changes have been saved."
+    else
+      render :edit
     end
   end
 
