@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    @course.user = current_user
 
     if @course.save
       flash[:notice] = "You've successfully created a new course!"

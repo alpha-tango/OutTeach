@@ -1,8 +1,10 @@
 require "rails_helper"
 
-feature 'add a new course' do
+feature 'user adds a new course' do
   scenario 'add a valid course' do
+    user = FactoryGirl.create(:user)
     course = FactoryGirl.build(:course)
+    sign_in_as(user)
     visit new_course_path
 
     fill_in "Title", with: course.title
