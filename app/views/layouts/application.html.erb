@@ -37,6 +37,10 @@
     <br>
     <div class="alert-box success radius"><%= flash[:notice] %></div>
   <% end %>
+  <% if flash[:alert] %>
+    <br>
+    <div class="alert-box alert"><%= flash[:alert] %></div>
+  <% end %>
 
 <%= yield %>
 
