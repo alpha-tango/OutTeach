@@ -23,4 +23,13 @@ class AssignmentsController < ApplicationController
     @element = Element.new
   end
 
+  def destroy
+    @assignment = Assignment.find(params[:id])
+    if @assignment.destroy
+      redirect_to course_path(@assignment.course)
+      flash[:notice] = "Assignment deleted"
+    else
+      render :show
+    end
+  end
 end
