@@ -32,4 +32,21 @@ class AssignmentsController < ApplicationController
       render :show
     end
   end
+
+  def edit
+    assignment = Assignment.find(params[:id])
+    if assignment.course.user == current_user
+      @assignment = assignment
+    end
+  end
+
+  def update
+    @assignment = Assignment.find(params[:id])
+    if @assignment.course.user == current_user && @assignment.update(assignment_params)
+      redirect_to course_assignment_path(@assignment.course, @assignment)
+      flash[:notice] = "Assignment updated"
+    else
+      render :edit
+    end
+  end
 end

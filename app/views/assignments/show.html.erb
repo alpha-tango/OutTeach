@@ -5,11 +5,20 @@
 <h3> <%= @assignment.title %> </h3>
 
 <% if @assignment.course.user == current_user %>
-  <%= link_to "Delete Assignment",
-      assignment_path(@assignment),
-      method: :delete,
-      data: { confirm: 'Are you sure you want to delete this assignment and all its content?' },
-      class: 'button' %>
+  <ul class='button-group'>
+    <li>
+      <%= link_to "Delete Assignment",
+          assignment_path(@assignment),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this assignment and all its content?' },
+          class: 'button' %>
+    </li>
+    <li>
+      <%= link_to "Update Assignment Info",
+          edit_assignment_path(@assignment),
+          class: 'button' %>
+    </li>
+  </ul>
 <% end %>
 
 <% if @assignment.elements.any? %>

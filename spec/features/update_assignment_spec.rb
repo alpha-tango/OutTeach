@@ -8,9 +8,9 @@ feature 'update an assignment' do
   end
 
   scenario 'update assignment' do
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit edit_assignment_path(@assignment)
 
-    fill_in "New Title", with: @assignment.title
+    fill_in "Title", with: "New Title"
 
     click_button "Update Assignment"
 
