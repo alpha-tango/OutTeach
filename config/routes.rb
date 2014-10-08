@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :elements, only: [:new, :create, :index, :show]
     end
   end
+
+  resources :assignments, only: [:destroy, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

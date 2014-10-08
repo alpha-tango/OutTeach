@@ -3,9 +3,8 @@ require 'rails_helper'
 feature 'add a new assignment' do
 
   before(:each) do
-    @user = FactoryGirl.create(:user)
     @course = FactoryGirl.create(:course)
-    sign_in_as(@user)
+    sign_in_as(@course.user)
   end
 
   scenario 'add a valid assignment' do

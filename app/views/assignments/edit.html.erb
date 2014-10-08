@@ -1,0 +1,21 @@
+<h3>Update assignment</h3>
+<%= form_for @assignment do |f| %>
+  <% if @assignment.errors.any? %>
+  <div id="error_explanation">
+    <p class="alert-box alert"><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</p>
+
+    <ul>
+    <% @assignment.errors.full_messages.each do |msg| %>
+      <li class="alert-box secondary"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit "Update Assignment", class: 'button' %>
+  </p>
+<% end %>
