@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @assignment = Assignment.new(assignment_params)
     @course = Course.find(params[:course_id])
