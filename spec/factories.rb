@@ -12,6 +12,11 @@ FactoryGirl.define do
     association :user
   end
 
+  factory :quiz do
+    sequence(:title) { |n| "Quiz #{n}"}
+    association :course
+  end
+
   factory :assignment do
     sequence(:title) { |n| "Interwebs Part #{ n }" }
     association :course
