@@ -3,9 +3,8 @@ require 'rails_helper'
 feature 'add a new element' do
 
   before(:each) do
-    @user = FactoryGirl.create(:user)
-    sign_in_as (@user)
     @assignment = FactoryGirl.create(:assignment)
+    sign_in_as (@assignment.course.user)
   end
 
   scenario 'add a valid text element' do

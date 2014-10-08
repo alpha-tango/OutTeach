@@ -26,30 +26,35 @@
     <% if element.type_id == 1 %>
       <div class="text">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <p> <%= element.content %> <p>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 2 %>
       <div class="tipbox">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= element.content %>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 3 %>
       <div class="image">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= image_tag(element.url) %><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 4 %>
       <div class="video">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <iframe src=<%= "#{element.url}" %>></iframe><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 5 %>
       <div class="markdown">
         <h4> <%= element.title %> </h4>
+        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= kramdown(element.content) %>
         <strong> <%= element.citation %> </strong>
       </div>
@@ -57,43 +62,44 @@
   <% end %>
 <% end %>
 
+<% if @assignment.course.user == current_user %>
+  <h4> Add a new assignment element </h4>
+  <div id=new_element>
+    <%= form_for [@assignment.course, @assignment, @element] do |f| %>
+      <% if @element.errors.any? %>
+      <div id="error_explanation">
+        <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
 
-<h4> Add a new assignment element </h4>
-<div id=new_element>
-  <%= form_for [@assignment.course, @assignment, @element] do |f| %>
-    <% if @element.errors.any? %>
-    <div id="error_explanation">
-      <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
-
-      <ul>
-      <% @element.errors.full_messages.each do |msg| %>
-        <li class="alert-box secondary"><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <p>
-      <%= f.label :type_id, "Element Type" %>
-      <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]] %>
-    </p>
-    <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.label :url %>
-      <%= f.text_field :url %>
-    </p>
-    <p>
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-    </p>
-    <p>
-      <%= f.label :citation %>
-      <%= f.text_field :citation %>
-    </p>
-    <p>
-      <%= f.submit "Create Element", class: 'button' %>
-    </p>
-  <% end %>
-</div>
+        <ul>
+        <% @element.errors.full_messages.each do |msg| %>
+          <li class="alert-box secondary"><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <p>
+        <%= f.label :type_id, "Element Type" %>
+        <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]] %>
+      </p>
+      <p>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </p>
+      <p>
+        <%= f.label :url %>
+        <%= f.text_field :url %>
+      </p>
+      <p>
+        <%= f.label :content %>
+        <%= f.text_area :content %>
+      </p>
+      <p>
+        <%= f.label :citation %>
+        <%= f.text_field :citation %>
+      </p>
+      <p>
+        <%= f.submit "Create Element", class: 'button' %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 class ElementsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @element = Element.new
   end
@@ -18,7 +18,40 @@ class ElementsController < ApplicationController
     end
   end
 
+  def destroy
+    element = Element.find(params[:id])
+    if element.assignment.course.user == current_user
+      @element = element
+    end
+    if @element.destroy
+      redirect_to course_assignment_path(@element.assignment.course, @element.assignment)
+      flash[:notice]="Element deleted"
+    else
+      render :show
+    end
+  end
+
   def element_params
     params.require(:element).permit(:type_id, :assignment_id, :content, :title, :citation, :url)
+  end
+
+  def edit
+    element = Element.find(params[:id])
+    if element.assignment.course.user == current_user
+      @element = element
+    end
+  end
+
+  def update
+    element = Element.find(params[:id])
+    if element.assignment.course.user == current_user
+      @element = element
+    end
+    if @element.update(element_params)
+      redirect_to course_assignment_path(@element.assignment.course, @element.assignment)
+      flash[:notice] = "Assignment updated"
+    else
+      render :edit
+    end
   end
 end
