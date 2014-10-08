@@ -11,9 +11,10 @@ feature 'add a new quiz' do
     quiz = FactoryGirl.build(:quiz)
     visit course_path(@course)
 
-    fill_in "Title", with: quiz.title
-
-    click_button "Create Quiz"
+    within 'div#new-quiz' do
+      fill_in "Title", with: quiz.title
+      click_button "Create Quiz"
+    end
 
     expect(page).to have_content("successfully")
     expect(page).to have_content(@course.title)
@@ -23,8 +24,9 @@ feature 'add a new quiz' do
   scenario 'add a blank quiz' do
     visit course_path(@course)
 
-    click_button "Create Quiz"
-
-    expect(page).to have_content("Title can't be blank")
+    within 'div#new-quiz' do
+      click_button "Create Quiz"
+      expect(page).to have_content("Title can't be blank")
+    end
   end
 end

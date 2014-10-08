@@ -1,0 +1,5 @@
+<%= link_to "Back to course view", course_path(@quiz.course), class: 'button' %>
+<%= link_to "Back to all courses", courses_path, class: 'button' %>
+
+<h2> <%= @quiz.course.title %> </h2>
+<h3> <%= @quiz.title %> </h3>

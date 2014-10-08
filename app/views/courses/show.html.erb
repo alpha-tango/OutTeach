@@ -36,25 +36,51 @@
   <% end %>
 
 <% if @course.user == current_user %>
-  <h3>Add a new assignment</h3>
-  <%= form_for [@course, @assignment] do |f| %>
-    <% if @assignment.errors.any? %>
-    <div id="error_explanation">
-      <p class="alert-box alert"><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</p>
+  <div id="new-assignment">
+    <h3>Add a new assignment</h3>
+    <%= form_for [@course, @assignment] do |f| %>
+      <% if @assignment.errors.any? %>
+      <div id="error_explanation">
+        <p class="alert-box alert"><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</p>
 
-      <ul>
-      <% @assignment.errors.full_messages.each do |msg| %>
-        <li class="alert-box secondary"><%= msg %></li>
+        <ul>
+        <% @assignment.errors.full_messages.each do |msg| %>
+          <li class="alert-box secondary"><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
       <% end %>
-      </ul>
-    </div>
+      <p>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </p>
+      <p>
+        <%= f.submit "Create Assignment", class: 'button' %>
+      </p>
     <% end %>
-    <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.submit "Create Assignment", class: 'button' %>
-    </p>
-  <% end %>
+  </div>
+
+  <div id='new-quiz'>
+    <h3>Add a new quiz</h3>
+    <%= form_for [@course, @quiz] do |f| %>
+      <% if @quiz.errors.any? %>
+      <div id="error_explanation">
+        <p class="alert-box alert"><%= pluralize(@quiz.errors.count, "error") %> prohibited this post from being saved:</p>
+
+        <ul>
+        <% @quiz.errors.full_messages.each do |msg| %>
+          <li class="alert-box secondary"><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <p>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </p>
+      <p>
+        <%= f.submit "Create Quiz", class: 'button' %>
+      </p>
+    <% end %>
+  </div>
 <% end %>
