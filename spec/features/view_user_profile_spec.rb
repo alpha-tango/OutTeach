@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'view a user profile do', focus: true do
+feature 'view a user profile do' do
   scenario 'view profile' do
     user = FactoryGirl.create(:user)
-    @courses = FactoryGirl.create_list(:course, 3)
+    @courses = FactoryGirl.create_list(:course, 3, user: user)
     sign_in_as(user)
 
     visit user_path(user)
