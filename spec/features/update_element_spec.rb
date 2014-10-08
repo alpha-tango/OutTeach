@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'update element', focus: true do
+feature 'update element' do
 
   before(:each) do
     user = FactoryGirl.create(:user)
@@ -15,7 +15,7 @@ feature 'update element', focus: true do
 
     fill_in "Title", with: "New Title"
     select "Markdown", from: "element_type_id"
-    click_button "Create Element"
+    click_button "Update Element"
 
     expect(page).to have_content("updated")
     within('div.markdown') do
