@@ -3,3 +3,14 @@
 
 <h2> <%= @quiz.course.title %> </h2>
 <h3> <%= @quiz.title %> </h3>
+
+<% if @quiz.course.user == current_user %>
+  <h4> Add a new question </h4>
+  <%= form_for [@quiz, @question] do |f| %>
+  <p>
+    <%= f.label :text, "Question text" %><br>
+    <%= f.text_field :text %>
+  </p>
+  <%= f.submit %>
+  <% end %>
+<% end %>

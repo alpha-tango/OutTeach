@@ -11,7 +11,7 @@ feature 'add a new element', focus: true do
     question = FactoryGirl.build(:question)
     visit quiz_path(@quiz)
 
-    fill_in "Text", with: question.text
+    fill_in "Question text", with: question.text
     fill_in "Correct Answer", with: question.correct_answer
     fill_in "First Wrong Answer", with: question.wrong_answers.pop.text
     fill_in "Second Wrong Answer", with: question.wrong_answer.pop.text

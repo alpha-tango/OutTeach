@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :quizzes, only: [:show]
+  resources :quizzes, only: [:show] do
+    resources :questions, only: [:new, :index]
+  end
+
   resources :assignments, only: [:destroy, :edit, :update]
   resources :elements, only: [:destroy, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
