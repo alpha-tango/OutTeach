@@ -32,12 +32,14 @@
     <%= f.text_field :text %>
   </p>
   <p>
-    <%= f.label :correct_answer, "Correct Answer" %><br>
-    <%= f.text_field :correct_answer %>
+    <%= fields_for "correct_answer", @question.answers.build do |answer| %>
+      <%= answer.label :text, "Correct Answer" %><br>
+      <%= answer.text_field :text %>
+    <% end %>
   </p>
 
   <% @question.wrong_answers.each_with_index do |answer, i| %>
-    <%= fields_for @question, "wrong_answers[#{i}]", answer do |f| %>
+    <%= fields_for "wrong_answers[#{i}]", answer do |f| %>
       <p>
       <%= f.label :text, "Wrong Answer" %><br>
       <%= f.text_field :text %>
