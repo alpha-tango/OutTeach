@@ -13,6 +13,8 @@ feature 'add a new assignment' do
 
     within ('div#new-assignment') do
       fill_in "Title", with: assignment.title
+      fill_in "Why This Is Important", with: assignment.importance
+      fill_in "Learning Goals", with assignment.goals
       click_button "Create Assignment"
     end
 
@@ -27,6 +29,8 @@ feature 'add a new assignment' do
     within ('div#new-assignment') do
       click_button "Create Assignment"
       expect(page).to have_content("Title can't be blank")
+      expect(page).to have_content("Importance can't be blank")
+      expect(page).to have_content("Goals can't be blank")
     end
 
   end
