@@ -2,7 +2,7 @@
 
 <h2><%= @course.title %></h2>
 
-  <% if @course.user == current_user %>
+  <% if @course.user == current_user || current_user.admin? %>
     <ul class="button-group">
       <li>
         <%= link_to "Delete Course",
@@ -30,12 +30,12 @@
   <% if @course.assignments.any? %>
     <% @course.assignments.each do |assignment| %>
       <li>
-        <%= link_to assignment.title, course_assignment_path(@course, assignment) %>
+        <%= link_to assignment.title, assignment_path(@course, assignment) %>
       </li>
     <% end %>
   <% end %>
 
-<% if @course.user == current_user %>
+<% if @course.user == current_user || current_user.admin? %>
   <%= link_to "Add a new assignment", new_course_assignment_path(@course) %>
 
   <div id='new-quiz'>

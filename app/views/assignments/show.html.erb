@@ -4,7 +4,7 @@
 <h2> <%= @assignment.course.title %> </h2>
 <h3> <%= @assignment.title %> </h3>
 
-<% if @assignment.user == current_user %>
+<% if @assignment.user == current_user || current_user.admin? %>
   <ul class='button-group'>
     <li>
       <%= link_to "Delete Assignment",
@@ -62,7 +62,7 @@
   <% end %>
 <% end %>
 
-<% if @assignment.user == current_user %>
+<% if @assignment.user == current_user || current_user.admin? %>
   <h4> Add a new assignment element </h4>
   <div id=new_element>
     <%= form_for [@assignment, @element] do |f| %>

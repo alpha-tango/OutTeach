@@ -13,7 +13,7 @@
 </ul>
 <% end %>
 
-<% if @quiz.course.user == current_user %>
+<% if @quiz.course.user == current_user || current_user.admin? %>
   <h4> Add a new question </h4>
   <%= form_for [@quiz, @question] do |f| %>
   <% if @question.errors.any? %>
