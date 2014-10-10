@@ -1,4 +1,4 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
-  validates :text, :correct?, presence: true
+  validates :text, presence: true
 end
