@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.includes(:assignments, :quizzes).find(params[:id])
     @assignment = Assignment.new
     @quiz = Quiz.new
   end

@@ -36,29 +36,7 @@
   <% end %>
 
 <% if @course.user == current_user %>
-  <div id="new-assignment">
-    <h3>Add a new assignment</h3>
-    <%= form_for [@course, @assignment] do |f| %>
-      <% if @assignment.errors.any? %>
-      <div id="error_explanation">
-        <p class="alert-box alert"><%= pluralize(@assignment.errors.count, "error") %> prohibited this post from being saved:</p>
-
-        <ul>
-        <% @assignment.errors.full_messages.each do |msg| %>
-          <li class="alert-box secondary"><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-      <% end %>
-      <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-      </p>
-      <p>
-        <%= f.submit "Create Assignment", class: 'button' %>
-      </p>
-    <% end %>
-  </div>
+  <%= link_to "Add a new assignment", new_course_assignment_path(@course) %>
 
   <div id='new-quiz'>
     <h3>Add a new quiz</h3>

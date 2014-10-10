@@ -12,7 +12,7 @@ class ElementsController < ApplicationController
 
     if @element.save
       flash[:notice] = "Element successfully created!"
-      redirect_to course_assignment_path(@assignment.course, @assignment)
+      redirect_to assignment_path(@assignment)
     else
       render 'assignments/show'
     end
@@ -24,7 +24,7 @@ class ElementsController < ApplicationController
       @element = element
     end
     if @element.destroy
-      redirect_to course_assignment_path(@element.assignment.course, @element.assignment)
+      redirect_to assignment_path(@element.assignment)
       flash[:notice]="Element deleted"
     else
       render :show
@@ -48,7 +48,7 @@ class ElementsController < ApplicationController
       @element = element
     end
     if @element.update(element_params)
-      redirect_to course_assignment_path(@element.assignment.course, @element.assignment)
+      redirect_to assignment_path(@element.assignment)
       flash[:notice] = "Assignment updated"
     else
       render :edit

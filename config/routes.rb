@@ -7,17 +7,19 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :quizzes, only: [:new, :create]
-    resources :assignments, only: [:new, :create, :index, :show] do
-      resources :elements, only: [:new, :create, :index, :show]
-    end
+    resources :assignments, only: [:new, :create, :index]
   end
+
+  resources :assignments, only: [:destroy, :edit, :update, :show] do
+    resources :elements, only: [:new, :create, :index, :show]
+  end
+
+  resources :elements, only: [:destroy, :edit, :update]
 
   resources :quizzes, only: [:show] do
     resources :questions, only: [:new, :create, :index]
   end
 
-  resources :assignments, only: [:destroy, :edit, :update]
-  resources :elements, only: [:destroy, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

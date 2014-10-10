@@ -30,6 +30,8 @@ FactoryGirl.define do
 
   factory :assignment do
     sequence(:title) { |n| "Interwebs Part #{ n }" }
+    importance "This is very important"
+    goals "There are three goals"
     association :course
   end
 

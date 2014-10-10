@@ -9,7 +9,7 @@ feature 'add a new element' do
 
   scenario 'add a valid text element' do
     element = FactoryGirl.build(:text_element)
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     fill_in "Title", with: element.title
     select "Text", from: "element_type_id"
@@ -26,7 +26,7 @@ feature 'add a new element' do
 
   scenario 'add a valid tipbox element' do
     element = FactoryGirl.build(:tipbox_element)
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     fill_in "Title", with: element.title
     select "Tipbox", from: "element_type_id"
@@ -43,7 +43,7 @@ feature 'add a new element' do
 
   scenario 'add a valid image element' do
     element = FactoryGirl.build(:image_element)
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     fill_in "Title", with: element.title
     select "Image", from: "element_type_id"
@@ -60,7 +60,7 @@ feature 'add a new element' do
 
   scenario 'add a valid video element' do
     element = FactoryGirl.build(:video_element)
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     fill_in "Title", with: element.title
     select "Video", from: "element_type_id"
@@ -77,7 +77,7 @@ feature 'add a new element' do
 
   scenario 'add a valid markdown element' do
     element = FactoryGirl.build(:markdown_element)
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     fill_in "Title", with: element.title
     select "Markdown", from: "element_type_id"
@@ -93,7 +93,7 @@ feature 'add a new element' do
   end
 
   scenario 'add a blank element' do
-    visit course_assignment_path(@assignment.course, @assignment)
+    visit assignment_path(@assignment)
 
     click_button "Create Element"
 

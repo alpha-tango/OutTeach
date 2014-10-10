@@ -1,0 +1,31 @@
+<div id="new-assignment">
+  <h3>Add a new assignment</h3>
+  <%= form_for [course, assignment] do |f| %>
+    <% if assignment.errors.any? %>
+    <div id="error_explanation">
+      <p class="alert-box alert"><%= pluralize(assignment.errors.count, "error") %> prohibited this post from being saved:</p>
+
+      <ul>
+      <% assignment.errors.full_messages.each do |msg| %>
+        <li class="alert-box secondary"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :goals, "Learning Goals" %>
+      <%= f.text_area :goals %>
+    </p>
+    <p>
+      <%= f.label :importance, "Why This Is Important" %>
+      <%= f.text_area :importance %>
+    </p>
+    <p>
+      <%= f.submit "Create Assignment", class: 'button' %>
+    </p>
+  <% end %>
+</div>

@@ -4,7 +4,7 @@ feature 'user deletes an assignment' do
   scenario 'delete course' do
     assignment = FactoryGirl.create(:assignment)
     sign_in_as(assignment.course.user)
-    visit course_assignment_path(assignment.course, assignment)
+    visit assignment_path(assignment)
 
     click_link "Delete Assignment"
 

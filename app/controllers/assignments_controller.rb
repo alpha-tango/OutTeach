@@ -1,6 +1,11 @@
 class AssignmentsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+    @course = Course.find(params[:course_id])
+    @assignment = Assignment.new
+  end
+
   def create
     @assignment = Assignment.new(assignment_params)
     @course = Course.find(params[:course_id])
@@ -8,14 +13,14 @@ class AssignmentsController < ApplicationController
 
     if @assignment.save
       flash[:notice] = "Assignment successfully created!"
-      redirect_to course_assignment_path(@course, @assignment)
+      redirect_to assignment_path(@assignment)
     else
-      render :show
+      render :new
     end
   end
 
   def assignment_params
-    params.require(:assignment).permit(:course_id, :title)
+    params.require(:assignment).permit(:course_id, :title, :goals, :importance)
   end
 
   def show
@@ -43,7 +48,7 @@ class AssignmentsController < ApplicationController
   def update
     @assignment = Assignment.find(params[:id])
     if @assignment.course.user == current_user && @assignment.update(assignment_params)
-      redirect_to course_assignment_path(@assignment.course, @assignment)
+      redirect_to assignment_path(@assignment)
       flash[:notice] = "Assignment updated"
     else
       render :edit

@@ -65,7 +65,7 @@
 <% if @assignment.course.user == current_user %>
   <h4> Add a new assignment element </h4>
   <div id=new_element>
-    <%= form_for [@assignment.course, @assignment, @element] do |f| %>
+    <%= form_for [@assignment, @element] do |f| %>
       <% if @element.errors.any? %>
       <div id="error_explanation">
         <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>

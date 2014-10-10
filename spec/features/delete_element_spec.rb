@@ -4,7 +4,7 @@ feature 'user deletes an element' do
   scenario 'delete element' do
     element = FactoryGirl.create(:text_element)
     sign_in_as(element.assignment.course.user)
-    visit course_assignment_path(element.assignment.course, element.assignment)
+    visit assignment_path(element.assignment)
 
     click_link "Delete Element"
 
