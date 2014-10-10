@@ -30,7 +30,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:id])
-    if @assignment.course.user == current_user && @assignment.destroy
+    if @assignment.user == current_user && @assignment.destroy
       redirect_to course_path(@assignment.course)
       flash[:notice] = "Assignment deleted"
     else
@@ -40,14 +40,14 @@ class AssignmentsController < ApplicationController
 
   def edit
     assignment = Assignment.find(params[:id])
-    if assignment.course.user == current_user
+    if assignment.user == current_user
       @assignment = assignment
     end
   end
 
   def update
     @assignment = Assignment.find(params[:id])
-    if @assignment.course.user == current_user && @assignment.update(assignment_params)
+    if @assignment.user == current_user && @assignment.update(assignment_params)
       redirect_to assignment_path(@assignment)
       flash[:notice] = "Assignment updated"
     else

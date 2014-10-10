@@ -3,7 +3,7 @@ require "rails_helper"
 feature 'user deletes an assignment' do
   scenario 'delete course' do
     assignment = FactoryGirl.create(:assignment)
-    sign_in_as(assignment.course.user)
+    sign_in_as(assignment.user)
     visit assignment_path(assignment)
 
     click_link "Delete Assignment"

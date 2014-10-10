@@ -4,7 +4,7 @@ feature 'add a new element' do
 
   before(:each) do
     @assignment = FactoryGirl.create(:assignment)
-    sign_in_as (@assignment.course.user)
+    sign_in_as (@assignment.user)
   end
 
   scenario 'add a valid text element' do

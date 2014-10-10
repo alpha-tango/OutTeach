@@ -3,7 +3,7 @@ require "rails_helper"
 feature 'user deletes an element' do
   scenario 'delete element' do
     element = FactoryGirl.create(:text_element)
-    sign_in_as(element.assignment.course.user)
+    sign_in_as(element.user)
     visit assignment_path(element.assignment)
 
     click_link "Delete Element"
