@@ -6,9 +6,14 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :courses do
+    resources :quizzes, only: [:new, :create]
     resources :assignments, only: [:new, :create, :index, :show] do
       resources :elements, only: [:new, :create, :index, :show]
     end
+  end
+
+  resources :quizzes, only: [:show] do
+    resources :questions, only: [:new, :create, :index]
   end
 
   resources :assignments, only: [:destroy, :edit, :update]

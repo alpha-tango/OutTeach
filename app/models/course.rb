@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   has_many :assignments, dependent: :destroy
+  has_many :quizzes, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true

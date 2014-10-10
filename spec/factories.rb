@@ -12,6 +12,22 @@ FactoryGirl.define do
     association :user
   end
 
+  factory :quiz do
+    sequence(:title) { |n| "Quiz #{n}"}
+    association :course
+  end
+
+  factory :question do
+    sequence(:text) { |n| "Is this a question #{n}" }
+    association :quiz
+  end
+
+  factory :answer do
+    sequence(:text) { |n| "This is a wrong answer #{n}" }
+    correct false
+    association :question
+  end
+
   factory :assignment do
     sequence(:title) { |n| "Interwebs Part #{ n }" }
     association :course

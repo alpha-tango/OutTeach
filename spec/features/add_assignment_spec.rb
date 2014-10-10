@@ -8,12 +8,13 @@ feature 'add a new assignment' do
   end
 
   scenario 'add a valid assignment' do
-    assignment = FactoryGirl.create(:assignment)
     visit course_path(@course)
+    assignment = FactoryGirl.build(:assignment)
 
-    fill_in "Title", with: assignment.title
-
-    click_button "Create Assignment"
+    within ('div#new-assignment') do
+      fill_in "Title", with: assignment.title
+      click_button "Create Assignment"
+    end
 
     expect(page).to have_content("successfully")
     expect(page).to have_content(@course.title)
@@ -23,8 +24,10 @@ feature 'add a new assignment' do
   scenario 'add a blank assignment' do
     visit course_path(@course)
 
-    click_button "Create Assignment"
+    within ('div#new-assignment') do
+      click_button "Create Assignment"
+      expect(page).to have_content("Title can't be blank")
+    end
 
-    expect(page).to have_content("Title can't be blank")
   end
 end

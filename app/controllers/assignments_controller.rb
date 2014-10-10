@@ -10,7 +10,7 @@ class AssignmentsController < ApplicationController
       flash[:notice] = "Assignment successfully created!"
       redirect_to course_assignment_path(@course, @assignment)
     else
-      render 'courses/show'
+      render :show
     end
   end
 
