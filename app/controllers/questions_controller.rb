@@ -1,11 +1,8 @@
 class QuestionsController < ApplicationController
   def create
-    binding.pry
-    @question = Question.new(question_params)
+    @question = Question.new(question_params.merge(correct_answer: params[:correct_answer][:text], wrong_answers: params[:wrong_answers]))
     @quiz = Quiz.find(params[:quiz_id])
     @question.quiz = @quiz
-    @question.wrong_answers=(params['wrong_answers'])
-
 
     if @question.save
       redirect_to quiz_path(@quiz)
@@ -16,6 +13,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:text, :correct_answer, :wrong_answers)
+    params.require(:question).permit(:text, :correct_answer['text'], :wrong_answers[0], :wrong_answers[1], :wrong_answers[2])
   end
 end
