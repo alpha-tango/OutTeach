@@ -13,8 +13,6 @@ feature 'add a new element' do
     wrong_answers = FactoryGirl.build_list(:answer, 3, question: question)
     visit quiz_path(@quiz)
 
-    save_and_open_page
-
     fill_in "Question text", with: question.text
     fill_in "Correct Answer", with: correct_answer.text
     fill_in 'wrong_answers_0_text', with: wrong_answers[0].text
