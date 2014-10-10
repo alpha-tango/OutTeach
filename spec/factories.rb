@@ -18,8 +18,14 @@ FactoryGirl.define do
   end
 
   factory :question do
-    sequence(:text) { |n| "Is this a question #{n}"}
+    sequence(:text) { |n| "Is this a question #{n}" }
     association :quiz
+  end
+
+  factory :answer do
+    sequence(:text) { |n| "This is a wrong answer #{n}" }
+    correct? false
+    association :question
   end
 
   factory :assignment do

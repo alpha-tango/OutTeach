@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :quizzes, only: [:show] do
-    resources :questions, only: [:new, :index]
+    resources :questions, only: [:new, :create, :index]
   end
 
   resources :assignments, only: [:destroy, :edit, :update]

@@ -4,13 +4,47 @@
 <h2> <%= @quiz.course.title %> </h2>
 <h3> <%= @quiz.title %> </h3>
 
+<% if @quiz.questions.any? %>
+  <ul>
+    <% @quiz.questions.each do |question| %>
+      <li><%= question.text %><br>
+      <%= question.answers.pluck(:text) %></li>
+    <% end %>
+</ul>
+<% end %>
+
 <% if @quiz.course.user == current_user %>
   <h4> Add a new question </h4>
   <%= form_for [@quiz, @question] do |f| %>
+  <% if @question.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@question.errors.count, "error") %> prohibited this quiz from being submitted:</h3>
+    <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+
+<% end %>
   <p>
     <%= f.label :text, "Question text" %><br>
     <%= f.text_field :text %>
   </p>
+  <p>
+    <%= f.label :correct_answer, "Correct Answer" %><br>
+    <%= f.text_field :correct_answer %>
+  </p>
+
+  <% @question.wrong_answers.each_with_index do |answer, i| %>
+    <%= fields_for @question, "wrong_answers[#{i}]", answer do |f| %>
+      <p>
+      <%= f.label :text, "Wrong Answer" %><br>
+      <%= f.text_field :text %>
+      </p>
+    <% end %>
+  <% end %>
+
   <%= f.submit %>
   <% end %>
 <% end %>
