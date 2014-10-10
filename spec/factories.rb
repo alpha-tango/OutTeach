@@ -24,7 +24,7 @@ FactoryGirl.define do
 
   factory :answer do
     sequence(:text) { |n| "This is a wrong answer #{n}" }
-    correct? false
+    correct false
     association :question
   end
 

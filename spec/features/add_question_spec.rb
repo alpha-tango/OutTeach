@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'add a new element', focus: true do
+feature 'add a new element' do
 
   before(:each) do
     @quiz = FactoryGirl.create(:quiz)

@@ -4,11 +4,11 @@ class Question < ActiveRecord::Base
   validates :quiz, :text, presence: true
 
   def correct_answer
-    self.answers.where(correct?: true).pluck(:text).first || ""
+    self.answers.where(correct: true).pluck(:text).first || ""
   end
 
   def correct_answer=(value)
-    new_answer = Answer.new(text: value, correct?: true)
+    new_answer = Answer.new(text: value, correct: true)
     self.answers << new_answer
   end
 
@@ -20,11 +20,11 @@ class Question < ActiveRecord::Base
 
   def wrong_answers
     wrong = []
-    if self.answers.where(correct?: false).empty?
+    if self.answers.where(correct: false).empty?
       3.times { wrong << self.answers.build }
       return wrong
     else
-      return self.answers.where(correct?: false)
+      return self.answers.where(correct: false)
     end
   end
 
