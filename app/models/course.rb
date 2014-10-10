@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  has_many :assignments, dependent: :destroy
+  has_many :assignments, -> { order("position ASC")} dependent: :destroy
   has_many :quizzes, dependent: :destroy
   belongs_to :user
 
