@@ -3,4 +3,8 @@ class Assignment < ActiveRecord::Base
   has_many :elements, dependent: :destroy
 
   validates :title, :course, :importance, :goals, presence: true
+
+  def user
+    self.course.user
+  end
 end
