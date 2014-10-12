@@ -13,8 +13,8 @@ feature 'user updates a course' do
     click_button "Update Course"
 
     expect(page).to have_content("changes have been saved")
-    expect(page).to have_content("new title")
-    expect(page).to have_content("new subject")
+    expect(page).to have_content("new title".upcase)
+    expect(page).to have_content("new subject".upcase)
     expect(page).to have_content("new description")
   end
 

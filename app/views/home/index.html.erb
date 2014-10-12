@@ -1,16 +1,40 @@
-<h3> Recently added courses: </h3>
-  <ul>
-    <% @courses.each do |course| %>
-      <li><%= course.title %></li>
-    <% end %>
-  </ul>
+<div id='title', class='row'>
+  <h1 id='outteach'><span class='subheader'>OUTTEACH</h1>
+  <h1>SHARE YOUR KNOWLEDGE</h1>
 
-  <% if user_signed_in? %>
-    <%= link_to "View all courses", courses_path, class: 'button' %>
-  <% else %>
-    <h4>
-      <%= link_to "Log in", new_user_session_path %> or
-      <%= link_to "Sign up", new_user_registration_path %>
-      to view more courses or add your own
-    </h4>
-  <% end %>
+<div id='about', class='body row'>
+  <div class='large-3 columns'>
+  <h3>RECENTLY<br>ADDED<br>COURSES</h3>
+  </div>
+  <div class='large-9 columns'>
+      <% @courses.each do |course| %>
+        <h4><%= course.title %></h4> by <%= course.user.name %><br>
+      <% end %><br>
+
+    <% if user_signed_in? %>
+      <%= link_to "VIEW ALL COURSES", courses_path, class: 'button' %>
+    <% else %>
+      <h4>
+        <%= link_to "Log in", new_user_session_path %> or
+        <%= link_to "Sign up", new_user_registration_path %>
+        to view more courses or add your own
+      </h4>
+    <% end %>
+  </div>
+</div>
+
+<div id='info', class='row'>
+  <div class='large-3 columns'>
+    <h3>HOW TO<br>USE THIS<br>WEBSITE</h3>
+  </div>
+  <div class='large-9 columns'>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='large-3 columns'>
+    <h3>ABOUT<br>THIS<br>WEBSITE</h3>
+  </div>
+  <div class='large-9 columns'>
+  </div>
+</div>

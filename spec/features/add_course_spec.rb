@@ -11,11 +11,11 @@ feature 'user adds a new course' do
     fill_in "Subject", with: course.subject
     fill_in "Description", with: course.description
 
-    click_button "Create Course"
+    click_button "CREATE COURSE"
 
     expect(page).to have_content("successfully")
-    expect(page).to have_content(course.title)
-    expect(page).to have_content(course.title)
+    expect(page).to have_content(course.title.upcase)
+    expect(page).to have_content(course.subject.upcase)
     expect(page).to have_content(course.description)
   end
 
@@ -25,7 +25,7 @@ feature 'user adds a new course' do
     sign_in_as(user)
     visit new_course_path
 
-    click_button "Create Course"
+    click_button "CREATE COURSE"
 
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Subject can't be blank")

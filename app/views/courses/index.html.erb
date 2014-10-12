@@ -1,15 +1,20 @@
-<h4> All Courses </h4>
+<div class='row'>
+  <div class='large-3 columns'>
+    <h3>FULL<br>LIST<br>OF<br>COURSES</h3>
+  </div>
 
-<ul>
-  <% @courses.each do |course| %>
-    <li>
-      <%= link_to course.title, course_path(course) %>
-      by <%= link_to course.user.name, user_path(course.user) %>
+  <div class='large-9 columns'>
+    <% @courses.each do |course| %>
+      <h4>
+        <%= link_to course.title, course_path(course), class: 'course-title' %>
+      </h4>
+      <span class: 'author'>by </span>
+      <%= link_to course.user.name, user_path(course.user), class: 'username' %>
       <p>
         <%= course.description %>
       </p>
-    </li>
-  <% end %>
-</ul>
+    <% end %>
 
-<%= link_to "Add a new course", new_course_path, class: 'button' %>
+    <%= link_to "ADD NEW COURSE", new_course_path, class: 'button' %>
+  </div>
+</div>
