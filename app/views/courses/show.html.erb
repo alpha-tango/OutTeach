@@ -39,7 +39,7 @@
       <h3>ADD A<br>NEW<br>ASSIGN-<br>MENT</h3>
     </div>
     <div class='large-9 columns'>
-      <%= render partial: 'new_assignment',
+      <%= render partial: 'courses/new_assignment',
           locals: { course: @course, assignment: @assignment } %>
     </div>
   </div>
@@ -48,26 +48,8 @@
       <h3>ADD A<br>NEW QUIZ</h3>
     </div>
     <div class='large-9 columns'>
-      <%= form_for [@course, @quiz] do |f| %>
-        <% if @quiz.errors.any? %>
-        <div id="error_explanation">
-          <p class="alert-box alert"><%= pluralize(@quiz.errors.count, "error") %> prohibited this post from being saved:</p>
-
-          <ul>
-          <% @quiz.errors.full_messages.each do |msg| %>
-            <li class="alert-box secondary"><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-        <% end %>
-        <p>
-          <%= f.label :title %>
-          <%= f.text_field :title %>
-        </p>
-        <p>
-          <%= f.submit "CREATE QUIZ", class: 'button' %>
-        </p>
-      <% end %>
+      <%= render partial: 'courses/new_quiz',
+          locals: { course: @course, quiz: @quiz } %>
     </div>
   </div>
 <% end %>

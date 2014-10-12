@@ -19,7 +19,7 @@ feature 'add a new element' do
     fill_in 'wrong_answers_1_text', with: wrong_answers[1].text
     fill_in 'wrong_answers_2_text', with: wrong_answers[2].text
 
-    click_button "Create Question"
+    click_button "CREATE QUESTION"
 
     expect(page).to have_content(question.text)
     question.answers.each do |answer|
