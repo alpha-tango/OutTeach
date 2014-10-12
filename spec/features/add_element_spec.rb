@@ -15,7 +15,7 @@ feature 'add a new element' do
     select "Text", from: "element_type_id"
     fill_in "Content", with: element.content
     fill_in "Citation", with: element.citation
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     within('div.text') do
       expect(page).to have_content(element.title)
@@ -32,7 +32,7 @@ feature 'add a new element' do
     select "Tipbox", from: "element_type_id"
     fill_in "Content", with: element.content
     fill_in "Citation", with: element.citation
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     within('div.tipbox') do
       expect(page).to have_content(element.title)
@@ -49,7 +49,7 @@ feature 'add a new element' do
     select "Image", from: "element_type_id"
     fill_in "Url", with: element.url
     fill_in "Citation", with: element.citation
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     within('div.image') do
       expect(page).to have_css("img[src=\"#{element.url}\"]")
@@ -66,7 +66,7 @@ feature 'add a new element' do
     select "Video", from: "element_type_id"
     fill_in "Url", with: element.url
     fill_in "Citation", with: element.citation
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     within('div.video') do
       expect(page).to have_css("iframe[src=\"#{element.url}\"]")
@@ -83,7 +83,7 @@ feature 'add a new element' do
     select "Markdown", from: "element_type_id"
     fill_in "Content", with: element.content
     fill_in "Citation", with: element.citation
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     within('div.markdown') do
       expect(page).to have_content(element.title)
@@ -95,7 +95,7 @@ feature 'add a new element' do
   scenario 'add a blank element' do
     visit assignment_path(@assignment)
 
-    click_button "Create Element"
+    click_button "SAVE CONTENT"
 
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Citation can't be blank")

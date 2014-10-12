@@ -1,21 +1,17 @@
 class AssignmentsController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-    @course = Course.find(params[:course_id])
-    @assignment = Assignment.new
-  end
-
   def create
-    @assignment = Assignment.new(assignment_params)
     @course = Course.find(params[:course_id])
+    @assignment = Assignment.new(assignment_params)
     @assignment.course = @course
 
     if @assignment.save
       flash[:notice] = "Assignment successfully created!"
       redirect_to assignment_path(@assignment)
     else
-      render :new
+      @quiz = Quiz.new
+      render 'courses/show'
     end
   end
 

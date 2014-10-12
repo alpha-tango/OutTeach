@@ -6,7 +6,7 @@ feature 'user deletes a course' do
     sign_in_as(course.user)
     visit course_path(course)
 
-    click_link "Delete Course"
+    click_link "Delete course"
 
     expect(page).to have_content("successfully")
     expect(page).to_not have_content(course.title)
