@@ -1,0 +1,187 @@
+html {
+  margin-right: 0px !important;
+  position: absolute;
+}
+
+.row {
+  margin-right: 0px;
+  vertical-align: middle;
+}
+
+h1, h2, h4, h4 > span.subheader, h5 {
+  font-family: 'cabin', sans-serif;
+  font-weight: 700;
+}
+
+h1, h1 > span.subheader {
+  background-color: white;
+  font-weight: 700;
+  font-size: 40px;
+  margin: 0px;
+}
+
+h1 > span.subheader {
+  color: #0099FF;
+}
+
+h3 {
+  font-family: 'cabin', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  color: #6f6f6f;
+  line-height: 120%;
+  margin: 0px;
+  vertical-align: middle;
+}
+
+.button {
+  font-family: 'cabin', sans-serif;
+  font-weight: 700;
+  background-color: #0099FF;
+}
+
+.top-bar-section > .inline_list >li > a {
+  font-family: 'cabin', sans-serif;
+  font-weight: 400;
+}
+
+.course-title {
+  font-family: 'cabin', sans-serif;
+  font-size: 115%;
+  font-weight: 700;
+  color: #0099FF;
+}
+
+.username {
+  color: #0066CC;
+  font-weight: bold;
+}
+
+.large-3 {
+  text-align: right;
+  border-right: solid 10px #6f6f6f;
+  padding-right: 20px;
+  margin: 20px 0px 20px 0px;
+  font-weight: 900;
+  vertical-align: middle;
+}
+
+.columns {
+  vertical-align: middle;
+}
+
+.large-9 {
+  vertical-align: middle;
+}
+
+.course-info,
+.course-info > .large-3,
+.course-info > .large-9 {
+  background-color: black;
+  border-color: #0099FF;
+  color: white;
+}
+
+.course-info > .large-3 > h3 > a,
+.course-info > .large-3 > h3 {
+  color: #0099FF;
+}
+
+.course-info > .large-9 > a {
+  font-weight: bold;
+  color: #0099FF;
+}
+
+.body {
+  background-color: #E8E8E8;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.body > .large-3 {
+  border: none;
+}
+
+.large-9 > h4,
+.body > .large-9 > h4 > a {
+  color: #0099FF;
+  font-size: 150%;
+  font-weight: 400;
+}
+
+.body > .tipbox {
+  border: 3px solid #FF3399;
+  background-color: #FF7373;
+}
+
+#info {
+  background-color: #0099FF;
+  margin-bottom: 20px;
+}
+
+#info > .large-3 {
+  border-color: #E8E8E8;
+}
+
+#info > .large-3 > h3 {
+  color: #E8E8E8;
+}
+
+#about > .large-3 {
+  border-right: solid 10px #0099FF;
+}
+#about > .large-3 > h3 {
+  color: #0099FF;
+}
+
+#flash {
+  margin-top: 100px;
+}
+
+.quiz {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #E8E8E8;
+}
+
+.quiz > .large-3 {
+  border: none;
+}
+
+.quiz > .large-9 > .quiz-q {
+  border: 2px solid #FF3300;
+}
+.quiz > .large-9 > .quiz-q > h4 {
+  color: #FF5050;
+}
+
+body {
+  margin-left: 20px;
+  margin-right: 0px !important;
+}
+
+.button:hover {
+  background-color: #0066FF;
+}
+
+#title {
+  background-color: black;
+  align: middle;
+  height: 80%;
+}
+
+#title > #outteach,
+#title > #outteach > .subheader {
+  background-color: black;
+}
+
+#title > h1 {
+  align: middle;
+  text-align: center;
+  font-weight: 700;
+  font-size: 70px;
+  padding: 40px 0px 40px 0px;
+  margin: 25px 400px 0px 400px;
+  background-color: #0077FF;
+  border-radius: 1000px;
+}

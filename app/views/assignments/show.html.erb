@@ -1,58 +1,58 @@
-<%= link_to "Back to course view", course_path(@assignment.course), class: 'button' %>
-<%= link_to "Back to all courses", courses_path, class: 'button' %>
-
-<h2> <%= @assignment.course.title %> </h2>
-<h3> <%= @assignment.title %> </h3>
-
-<% if @assignment.user == current_user || current_user.admin? %>
-  <ul class='button-group'>
-    <li>
-      <%= link_to "Delete Assignment",
-          assignment_path(@assignment),
+<div class='course-info row'>
+  <div class='large-3 columns'>
+    <h3>
+      <%= link_to @assignment.course.title.upcase, course_path(@assignment.course) %>
+    </h3>
+  </div>
+  <div class='large-9 columns'>
+    <h3> <%= @assignment.title %> </h3>
+    <% if @assignment.user == current_user || current_user.admin? %>
+      <%= link_to "Delete Assignment", assignment_path(@assignment),
           method: :delete,
-          data: { confirm: 'Are you sure you want to delete this assignment and all its content?' },
-          class: 'button' %>
-    </li>
-    <li>
-      <%= link_to "Update Assignment Info",
-          edit_assignment_path(@assignment),
-          class: 'button' %>
-    </li>
-  </ul>
-<% end %>
+          data: { confirm: 'Are you sure you want to delete this assignment and all its content?' } %><br>
+      <%= link_to "Update Assignment Info", edit_assignment_path(@assignment) %>
+    <% else %>
+      <p>
+        created by: <%= link_to @assignment.user.name, user_path(@assignment.user) %><br>
+        last updated at: <%= @assignment.updated_at %>
+      </p>
+  <% end %>
+  </div>
+</div>
 
 <% if @assignment.elements.any? %>
+<div class='body row'>
   <% @assignment.elements.each do |element| %>
     <% if element.type_id == 1 %>
-      <div class="text">
+      <div class="text large-9 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <p> <%= element.content %> <p>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 2 %>
-      <div class="tipbox">
+      <div class="tipbox large-3 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= element.content %>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 3 %>
-      <div class="image">
+      <div class="image large-9 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= image_tag(element.url) %><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 4 %>
-      <div class="video">
+      <div class="video large-9 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <iframe src=<%= "#{element.url}" %>></iframe><br>
+        <iframe width="420" height="315" src=<%= "#{element.url}" %>></iframe><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 5 %>
-      <div class="markdown">
+      <div class="markdown large-9 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
         <%= kramdown(element.content) %>
@@ -60,46 +60,50 @@
       </div>
     <% end %>
   <% end %>
+</div>
 <% end %>
-
 <% if @assignment.user == current_user || current_user.admin? %>
-  <h4> Add a new assignment element </h4>
-  <div id=new_element>
-    <%= form_for [@assignment, @element] do |f| %>
-      <% if @element.errors.any? %>
-      <div id="error_explanation">
-        <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
+  <div class='new element row'>
+    <div class='large-3 columns'>
+      <h3>ADD<br>SOME<br>MORE<br>CONTENT</h3>
+    </div>
+    <div class='large-9 columns'>
+      <%= form_for [@assignment, @element] do |f| %>
+        <% if @element.errors.any? %>
+        <div id="error_explanation">
+          <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
 
-        <ul>
-        <% @element.errors.full_messages.each do |msg| %>
-          <li class="alert-box secondary"><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-      <p>
-        <%= f.label :type_id, "Element Type" %>
-        <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]] %>
-      </p>
-      <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-      </p>
-      <p>
-        <%= f.label :url %>
-        <%= f.text_field :url %>
-      </p>
-      <p>
-        <%= f.label :content %>
-        <%= f.text_area :content %>
-      </p>
-      <p>
-        <%= f.label :citation %>
-        <%= f.text_field :citation %>
-      </p>
-      <p>
-        <%= f.submit "Create Element", class: 'button' %>
-      </p>
-    <% end %>
+          <ul>
+          <% @element.errors.full_messages.each do |msg| %>
+            <li class="alert-box secondary"><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+        <p>
+          <%= f.label :type_id, "Element Type" %>
+          <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]] %>
+        </p>
+        <p>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </p>
+        <p>
+          <%= f.label :url %>
+          <%= f.text_field :url %>
+        </p>
+        <p>
+          <%= f.label :content %>
+          <%= f.text_area :content %>
+        </p>
+        <p>
+          <%= f.label :citation %>
+          <%= f.text_field :citation %>
+        </p>
+        <p>
+          <%= f.submit "SAVE CONTENT", class: 'button' %>
+        </p>
+      <% end %>
+    </div>
   </div>
 <% end %>

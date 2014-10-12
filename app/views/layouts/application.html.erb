@@ -6,45 +6,47 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,700,500italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div>
+  <div class='fixed row'>
     <h1><span class="subheader">OUT</span>TEACH</h1>
-    <h4><span class="subheader">SHARE YOUR KNOWLEDGE</h4>
+    <div class="top-bar contain-to-grid">
+      <section class="top-bar-section contain-to-grid">
+        <ul class="right inline-list contain-to-grid">
+            <li>
+              <%= link_to "Home", root_path %>
+            </li>
+
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Courses', courses_path %>
+            <li>
+              <%= link_to 'My Profile', user_path(current_user) %>
+            </li>
+            <li>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            </li>
+          <% else %>
+            <li>
+            <%= link_to('Login', new_user_session_path) %>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    </div>
   </div>
 
-  <div class="top-bar">
-    <section class="top-bar-section">
-  <ul class="right inline-list">
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
-
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to 'My Profile', user_path(current_user) %>
-      <li>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-      </li>
-    <% else %>
-      <li>
-      <%= link_to('Login', new_user_session_path) %>
-      </li>
+  <div id='flash'>
+    <% if flash[:notice] %>
+      <br>
+      <div class="alert-box success radius"><%= flash[:notice] %></div>
     <% end %>
-
-  </ul>
-</section>
-</div>
-
-  <% if flash[:notice] %>
-    <br>
-    <div class="alert-box success radius"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:alert] %>
-    <br>
-    <div class="alert-box alert"><%= flash[:alert] %></div>
-  <% end %>
-
+    <% if flash[:alert] %>
+      <br>
+      <div class="alert-box alert"><%= flash[:alert] %></div>
+    <% end %>
+  </div>
 <%= yield %>
 
 </body>

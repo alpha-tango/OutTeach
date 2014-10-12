@@ -5,7 +5,7 @@ class QuizzesController < ApplicationController
     @quiz.course = @course
 
     if @quiz.save
-      flash[:notice] = "Assignment successfully created!"
+      flash[:notice] = "Quiz successfully created!"
       redirect_to quiz_path(@quiz)
     else
       render :show
