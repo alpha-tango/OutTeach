@@ -1,4 +1,4 @@
-<% if assignment.user == current_user %>
+<% if assignment.user == current_user || current_user.admin? %>
   <ul class='button-group'>
     <li><%= link_to "Delete Element",
             element_path(element),
