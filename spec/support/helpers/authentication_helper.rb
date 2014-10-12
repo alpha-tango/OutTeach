@@ -6,5 +6,12 @@ module Helpers
       fill_in "Password", with: user.password
       click_on "Log in"
     end
+
+    def admin_sign_in
+      @user = FactoryGirl.create(:user)
+      @admin = FactoryGirl.create(:user, role: 'admin')
+      sign_in_as(@admin)
+      @course = FactoryGirl.create(:course, user: @user)
+    end
   end
 end

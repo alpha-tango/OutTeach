@@ -1,0 +1,24 @@
+<div class='admin row'>
+  <div class='large-3 columns'>
+    <h3>ALL<BR>ADMIN</h3>
+  </div>
+  <div class='large-9 columns'>
+    <% @admins.each do |user| %>
+      <p><%= link_to user.name, user_path(user) %> (<%= user.email %>)</p>
+    <% end %>
+  </div>
+</div>
+
+<div class='members row'>
+  <div class='large-3 columns'>
+    <h3>ALL<BR>MEMBERS</h3>
+  </div>
+  <div class='large-9 columns'>
+    <% @members.each do |user| %>
+      <p>
+        <%= link_to user.name, user_path(user) %> (<%= user.email %>)
+        <%= link_to "Permanently remove this user", admin_user_path(user), method: :delete, data: { confirm: 'Really remove this user? This action cannot be undone.'} %>
+      </p>
+    <% end %>
+  </div>
+</div>
