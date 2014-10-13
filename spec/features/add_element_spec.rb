@@ -64,12 +64,12 @@ feature 'add a new element' do
 
     fill_in "Title", with: element.title
     select "Video", from: "element_type_id"
-    fill_in "Url", with: element.url
+    fill_in "Video embed", with: element.url
     fill_in "Citation", with: element.citation
     click_button "SAVE CONTENT"
 
     within('div.video') do
-      expect(page).to have_css("iframe[src=\"#{element.url}\"]")
+      expect(page).to have_css('iframe')
       expect(page).to have_content(element.title)
       expect(page).to have_content(element.citation)
     end

@@ -38,7 +38,7 @@ FactoryGirl.define do
   factory :video_element, class: Element do
     sequence(:title) { |n| "Video Element #{ n }"}
     sequence(:citation) { |n| "Source #{ n }"}
-    url "//www.youtube.com/embed/4ZPSrwedvsg"
+    url '<iframe width="560" height="315" src="//www.youtube.com/embed/LlUdlWi7MIQ" frameborder="0" allowfullscreen></iframe>'
     type_id 4
     association :assignment
   end

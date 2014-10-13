@@ -195,6 +195,7 @@ DEPENDENCIES
   jquery-rails
   kramdown
   launchy
+  nokogiri
   pg
   pry-rails
   rails (= 4.1.6)

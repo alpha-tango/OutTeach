@@ -32,7 +32,7 @@ class ElementsController < ApplicationController
   end
 
   def element_params
-    params.require(:element).permit(:type_id, :assignment_id, :content, :title, :citation, :url)
+    params.require(:element).permit(:type_id, :assignment_id, :content, :title, :citation, :url, :video_embed)
   end
 
   def edit

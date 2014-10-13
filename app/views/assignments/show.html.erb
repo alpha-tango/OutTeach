@@ -48,7 +48,7 @@
       <div class="video large-9 columns">
         <h4> <%= element.title %> </h4>
         <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <iframe width="420" height="315" src=<%= "#{element.url}" %>></iframe><br>
+        <iframe src=<%= "http:#{element.url}"%> width="560" height="315" ></iframe><br>
         <strong> <%= element.citation %> </strong>
       </div>
     <% elsif element.type_id == 5 %>
@@ -95,6 +95,10 @@
         <p>
           <%= f.label :content %>
           <%= f.text_area :content %>
+        </p>
+        <p>
+          <%= f.label :video_embed %>
+          <%= f.text_area :video_embed %>
         </p>
         <p>
           <%= f.label :citation %>
