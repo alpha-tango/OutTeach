@@ -32,6 +32,16 @@ class QuizzesController < ApplicationController
     @question = Question.new
   end
 
+  def destroy
+    @quiz = Quiz.find(params[:id])
+    if @quiz.user == current_user && @quiz.destroy
+      redirect_to course_path(@quiz.course)
+      flash[:notice] = "Quiz deleted"
+    else
+      render :show
+    end
+  end
+
   def quiz_params
     params.require(:quiz).permit(:course_id, :title)
   end

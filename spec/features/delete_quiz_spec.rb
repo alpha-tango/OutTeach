@@ -6,7 +6,7 @@ feature 'user deletes a quiz', focus: true do
     sign_in_as(quiz.user)
     visit quiz_path(quiz)
 
-    click_link "Delete Quiz"
+    click_link "Delete quiz"
 
     expect(page).to have_content("Quiz deleted")
     expect(page).to_not have_content(quiz.title)
