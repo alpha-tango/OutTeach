@@ -12,6 +12,26 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    question = Question.find(params[:id])
+    if question.user == current_user
+      @question = question
+    end
+  end
+
+  def update
+    question = Question.find(params[:id])
+    if question.user == current_user
+      @question = question
+    end
+    if @question.update(question_params)
+      redirect_to quiz_path(@question.quiz)
+      flash[:notice] = "Question updated"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     question = Question.find(params[:id])
     if question.user == current_user

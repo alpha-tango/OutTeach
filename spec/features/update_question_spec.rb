@@ -4,7 +4,7 @@ feature 'update a question', focus: true do
 
   before(:each) do
     @question = FactoryGirl.create(:question)
-    @correct_answer = FactoryGirl.create(:answer, text: "correct answer", question: @question)
+    @correct_answer = FactoryGirl.create(:answer, text: "correct answer", question: @question, correct: true)
     @wrong_answers = FactoryGirl.create_list(:answer, 3, question: @question)
     sign_in_as (@question.user)
   end
@@ -17,6 +17,7 @@ feature 'update a question', focus: true do
     fill_in 'wrong_answers_0_text', with: "so wrong 1"
     fill_in 'wrong_answers_1_text', with: "so wrong 2"
     fill_in 'wrong_answers_2_text', with: "so wrong 3"
+
     click_button "UPDATE QUESTION"
 
     expect(page).to have_content("updated")

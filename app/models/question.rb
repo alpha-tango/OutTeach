@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   validates :quiz, :text, presence: true
 
   def correct_answer
-    self.answers.where(correct: true).pluck(:text).first || ""
+    self.answers.where(correct: true).first || self.answers.build
   end
 
   def correct_answer=(value)
