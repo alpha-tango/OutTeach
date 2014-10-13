@@ -17,13 +17,12 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.all
   end
 
-  def quiz_params
-    params.require(:quiz).permit(:course_id, :title)
+  def show
+    @quiz = Quiz.includes(:questions).find(params[:id])
+    @question = Question.new
   end
 
-  def show
-    @quiz = Quiz.find(params[:id])
-    @question = Question.new
-    # @question = Question.build_new
+  def quiz_params
+    params.require(:quiz).permit(:course_id, :title)
   end
 end
