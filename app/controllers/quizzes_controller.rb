@@ -13,8 +13,18 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def index
-    @quiz = Quiz.all
+  def edit
+    @quiz = Quiz.find(params[:id])
+  end
+
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.user == current_user && @quiz.update(quiz_params)
+      redirect_to quiz_path(@quiz)
+      flash[:notice] = "Quiz updated"
+    else
+      render :edit
+    end
   end
 
   def show
