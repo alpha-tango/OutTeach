@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'user deletes a question', focus: true do
+feature 'user deletes a question' do
   scenario 'delete question' do
     question = FactoryGirl.create(:question)
     sign_in_as(question.user)

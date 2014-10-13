@@ -26,6 +26,7 @@
       <div class='quiz-q'>
         <% @quiz.questions.each do |question| %>
           <h4><%= question.text %></h4>
+          <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
           <% question.answers.pluck(:text).each do |answer| %>
             <%= answer %>
           <% end %>

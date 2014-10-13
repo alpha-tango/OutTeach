@@ -33,4 +33,8 @@ class Question < ActiveRecord::Base
       self.answers << Answer.new(text: value["text"])
     end
   end
+
+  def user
+    self.quiz.course.user
+  end
 end

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:new, :create, :index]
   end
 
+  resources :questions, only: [:destroy, :edit, :update]
+
   namespace :admin do
     resources :users, only: [:index, :destroy]
   end
