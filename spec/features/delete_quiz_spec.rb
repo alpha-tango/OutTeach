@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'user deletes a quiz', focus: true do
+feature 'user deletes a quiz' do
   scenario 'delete quiz' do
     quiz = FactoryGirl.create(:quiz)
     sign_in_as(quiz.user)
