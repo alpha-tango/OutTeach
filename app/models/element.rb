@@ -17,7 +17,7 @@ class Element < ActiveRecord::Base
   end
 
   def video_embed=(code)
-    doc = Nokogir::HTML(code)
+    doc = Nokogiri::HTML(code)
     link = doc.at_css('iframe').attr('src')
     self.url = link
   end
