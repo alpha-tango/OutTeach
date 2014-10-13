@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   def create
-    @question = Question.new(question_params.merge(correct_answer: params[:correct_answer][:text], wrong_answers: params[:wrong_answers]))
     @quiz = Quiz.find(params[:quiz_id])
+    @question = Question.new(question_params.merge(correct_answer: params[:correct_answer][:text], wrong_answers: params[:wrong_answers]))
     @question.quiz = @quiz
 
     if @question.save
