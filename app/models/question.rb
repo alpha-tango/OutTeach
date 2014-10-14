@@ -12,12 +12,6 @@ class Question < ActiveRecord::Base
     self.answers << new_answer
   end
 
-  def self.build_new
-    question = Question.new
-    3.times { question.answers.build }
-    question
-  end
-
   def wrong_answers
     wrong = []
     if self.answers.where(correct: false).empty?
@@ -28,10 +22,11 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def wrong_answers=(values)
-    values.each_value do |value|
-      self.answers << Answer.new(text: value["text"])
-    end
+  def wrong_answers=(answer_params)
+    binding.pry
+    answer_params.values.each do |param|
+
+    answer_params.map { |id, value| Answer.find_by(id, text: param["text"]) }
   end
 
   def user
