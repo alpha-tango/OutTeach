@@ -11,29 +11,32 @@
       <%= link_to "Update quiz info", edit_quiz_path(@quiz) %>
     <% else %>
       <p>
-        created by: <%= link_to @quiz.user.name, user_path(@assignment.user) %><br>
-        last updated at: <%= @quiz.updated_at %>
+        created by: <%= link_to @quiz.user.name, user_path(@quiz.user) %><br>
       </p>
   <% end %>
   </div>
 </div>
 
 <% if @quiz.questions.any? %>
-  <div class='quiz row'>
-    <div class='large-3 columns'>
-    </div>
-    <div class='large-9 columns'>
-      <div class='quiz-q'>
+  <% if @quiz.user == current_user || current_user.admin? %>
+    <div class='quiz row'>
+      <div class='large-3 columns'>
+      </div>
+      <div class='large-9 columns'>
         <% @quiz.questions.each do |question| %>
-          <h4><%= question.text %></h4>
-          <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
-          <% question.answers.pluck(:text).each do |answer| %>
-            <%= answer %>
-          <% end %>
+            <h4><%= question.text %></h4>
+            <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
+            <ol>
+              <% question.answers.pluck(:text).each do |answer| %>
+                <li><%= answer %></li>
+              <% end %>
+            </ol>
         <% end %>
       </div>
     </div>
-  </div>
+  <% else %>
+    <%= render  partial: 'take_quiz', locals: { quiz: @quiz } %>
+  <% end %>
 <% end %>
 
 <% if @quiz.course.user == current_user || current_user.admin? %>

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :quizzes, only: [:show, :edit, :update, :destroy] do
     resources :questions, only: [:new, :create, :index]
+    member do
+      post 'score'
+    end
   end
 
   resources :questions, only: [:destroy, :edit, :update]

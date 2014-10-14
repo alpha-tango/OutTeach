@@ -45,4 +45,17 @@ class QuizzesController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(:course_id, :title)
   end
+
+  def score
+    @quiz = Quiz.find(params[:id])
+
+    if params[:quiz]
+      tell_score = @quiz.score_answers(params[:quiz])
+      flash[:alert] = tell_score
+      render :show
+    else
+      flash[:alert] = "You haven't answered any questions yet!"
+      render :show
+    end
+  end
 end

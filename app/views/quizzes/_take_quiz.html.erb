@@ -1,0 +1,23 @@
+<div class='quiz row'>
+  <div class='large-3 columns'>
+    <h3>TAKE<br>QUIZ</h3>
+  </div>
+  <div class='large-9 columns'>
+    <%= form_for quiz, url: { action: 'score'}, method: :post do |f| %>
+        <%= f.fields_for :questions do |builder| %>
+        <ol>
+          <% quiz.questions.each do |question| %>
+            <li>
+              <h4><%= question.text %></h4>
+              <% question.answers.shuffle.each do |answer| %>
+                <%= builder.radio_button question.id, answer.id %>
+                <%= answer.text %><br>
+              <% end %>
+            </li>
+        <% end %>
+      </ol>
+      <% end %>
+      <%= f.submit "CHECK ANSWERS", class: 'button' %>
+    <% end %>
+  </div>
+</div>
