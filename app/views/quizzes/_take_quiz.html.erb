@@ -8,7 +8,7 @@
         <ol>
           <% quiz.questions.each do |question| %>
             <li>
-              <%= question.text %><br>
+              <h4><%= question.text %></h4>
               <% question.answers.shuffle.each do |answer| %>
                 <%= builder.radio_button question.id, answer.id %>
                 <%= answer.text %><br>

@@ -48,8 +48,14 @@ class QuizzesController < ApplicationController
 
   def score
     @quiz = Quiz.find(params[:id])
-    tell_score = @quiz.score_answers(params[:quiz])
-    flash[:notice] = tell_score
-    render :show
+
+    if params[:quiz]
+      tell_score = @quiz.score_answers(params[:quiz])
+      flash[:alert] = tell_score
+      render :show
+    else
+      flash[:alert] = "You haven't answered any questions yet!"
+      render :show
+    end
   end
 end

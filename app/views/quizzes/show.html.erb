@@ -18,13 +18,12 @@
 </div>
 
 <% if @quiz.questions.any? %>
-  <div class='quiz row'>
-    <div class='large-3 columns'>
-    </div>
-    <div class='large-9 columns'>
-        <% if @quiz.user == current_user || current_user.admin? %>
-          <% @quiz.questions.each do |question| %>
-            <div class='quiz-q'>
+  <% if @quiz.user == current_user || current_user.admin? %>
+    <div class='quiz row'>
+      <div class='large-3 columns'>
+      </div>
+      <div class='large-9 columns'>
+        <% @quiz.questions.each do |question| %>
             <h4><%= question.text %></h4>
             <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
             <ol>
@@ -32,13 +31,12 @@
                 <li><%= answer %></li>
               <% end %>
             </ol>
-          </div>
-          <% end %>
-        <% else %>
-        <%= render  partial: 'take_quiz', locals: { quiz: @quiz } %>
         <% end %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <%= render  partial: 'take_quiz', locals: { quiz: @quiz } %>
+  <% end %>
 <% end %>
 
 <% if @quiz.course.user == current_user || current_user.admin? %>

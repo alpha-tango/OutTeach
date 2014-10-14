@@ -144,15 +144,10 @@ h3 {
   background-color: #E8E8E8;
 }
 
-.quiz > .large-3 {
-  border: none;
-}
-
-.quiz > .large-9 > .quiz-q {
-  border: 2px solid #FF3300;
-}
-.quiz > .large-9 > .quiz-q > h4 {
-  color: #FF5050;
+.quiz > .large-9 > ol > li > h4 {
+  font-family: 'cabin', sans-serif;
+  font-weight: 700;
+  color: red;
 }
 
 body {
