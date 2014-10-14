@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     if question.user == current_user
       @question = question
     end
-    if @question.update(question_params)
+    if @question.update(question_params.merge(correct_answer: params[:correct_answer][:text], wrong_answers: params[:wrong_answers]))
       redirect_to quiz_path(@question.quiz)
       flash[:notice] = "Question updated"
     else

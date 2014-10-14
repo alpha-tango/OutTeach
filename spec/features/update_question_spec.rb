@@ -20,6 +20,8 @@ feature 'update a question', focus: true do
 
     click_button "UPDATE QUESTION"
 
+    save_and_open_page
+
     expect(page).to have_content("updated")
     expect(page).to have_content("new text")
     expect(page).to have_content("new correct answer")
