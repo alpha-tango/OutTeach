@@ -23,15 +23,21 @@
     <div class='large-3 columns'>
     </div>
     <div class='large-9 columns'>
-      <div class='quiz-q'>
-        <% @quiz.questions.each do |question| %>
-          <h4><%= question.text %></h4>
-          <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
-          <% question.answers.pluck(:text).each do |answer| %>
-            <%= answer %>
+        <% if @quiz.user == current_user || current_user.admin? %>
+          <% @quiz.questions.each do |question| %>
+            <div class='quiz-q'>
+            <h4><%= question.text %></h4>
+            <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
+            <ol>
+              <% question.answers.pluck(:text).each do |answer| %>
+                <li><%= answer %></li>
+              <% end %>
+            </ol>
+          </div>
           <% end %>
+        <% else %>
+        <% render  partial: 'take_quiz', locals: { quiz: @quiz } %>
         <% end %>
-      </div>
     </div>
   </div>
 <% end %>
