@@ -19,14 +19,30 @@
   </div>
 </div>
 
-<div class='body row'>
+<div class='row'>
   <div class='large-3 columns'>
+    <h3>ASSIGN-<br>MENTS</h3>
   </div>
   <div class='large-9 columns'>
     <% if @course.assignments.any? %>
       <% @course.assignments.each do |assignment| %>
         <h4>
           <%= link_to assignment.title, assignment_path(assignment) %>
+        </h4>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='large-3 columns'>
+    <h3>QUIZZES</h3>
+  </div>
+  <div class='large-9 columns'>
+    <% if @course.quizzes.any? %>
+      <% @course.quizzes.each do |quiz| %>
+        <h4>
+          <%= link_to quiz.title, quiz_path(quiz) %>
         </h4>
       <% end %>
     <% end %>

@@ -32,4 +32,7 @@ class Question < ActiveRecord::Base
   def user
     self.quiz.course.user
   end
+
+  def user_answer
+  end
 end

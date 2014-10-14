@@ -11,8 +11,7 @@
       <%= link_to "Update quiz info", edit_quiz_path(@quiz) %>
     <% else %>
       <p>
-        created by: <%= link_to @quiz.user.name, user_path(@assignment.user) %><br>
-        last updated at: <%= @quiz.updated_at %>
+        created by: <%= link_to @quiz.user.name, user_path(@quiz.user) %><br>
       </p>
   <% end %>
   </div>
@@ -36,7 +35,7 @@
           </div>
           <% end %>
         <% else %>
-        <% render  partial: 'take_quiz', locals: { quiz: @quiz } %>
+        <%= render  partial: 'take_quiz', locals: { quiz: @quiz } %>
         <% end %>
     </div>
   </div>
