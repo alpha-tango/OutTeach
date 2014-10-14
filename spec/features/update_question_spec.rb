@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'update a question', focus: true do
+feature 'update a question' do
 
   before(:each) do
     @question = FactoryGirl.create(:question)
@@ -13,18 +13,16 @@ feature 'update a question', focus: true do
     visit edit_question_path(@question)
 
     fill_in "Question text", with: "new text"
-    fill_in "Correct Answer", with: "new correct answer"
+    fill_in "Correct Answer", with: "correcter answer"
     fill_in 'wrong_answers_0_text', with: "so wrong 1"
     fill_in 'wrong_answers_1_text', with: "so wrong 2"
     fill_in 'wrong_answers_2_text', with: "so wrong 3"
 
     click_button "UPDATE QUESTION"
 
-    save_and_open_page
-
     expect(page).to have_content("updated")
     expect(page).to have_content("new text")
-    expect(page).to have_content("new correct answer")
+    expect(page).to have_content("correcter answer")
     expect(page).to have_content("so wrong 1")
     expect(page).to have_content("so wrong 2")
     expect(page).to have_content("so wrong 3")

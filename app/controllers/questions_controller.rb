@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
     @question = Question.new(question_params.merge(correct_answer: params[:correct_answer][:text], wrong_answers: params[:wrong_answers]))
     @question.quiz = @quiz
-
     if @question.save
       redirect_to quiz_path(@quiz)
       flash[:notice] = "Question successfully added"
