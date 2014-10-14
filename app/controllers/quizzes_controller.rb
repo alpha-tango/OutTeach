@@ -13,13 +13,33 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def index
-    @quiz = Quiz.all
+  def edit
+    @quiz = Quiz.find(params[:id])
+  end
+
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.user == current_user && @quiz.update(quiz_params)
+      redirect_to quiz_path(@quiz)
+      flash[:notice] = "Quiz updated"
+    else
+      render :edit
+    end
   end
 
   def show
     @quiz = Quiz.includes(:questions).find(params[:id])
     @question = Question.new
+  end
+
+  def destroy
+    @quiz = Quiz.find(params[:id])
+    if @quiz.user == current_user && @quiz.destroy
+      redirect_to course_path(@quiz.course)
+      flash[:notice] = "Quiz deleted"
+    else
+      render :show
+    end
   end
 
   def quiz_params

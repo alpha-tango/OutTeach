@@ -16,9 +16,11 @@ Rails.application.routes.draw do
 
   resources :elements, only: [:destroy, :edit, :update]
 
-  resources :quizzes, only: [:show] do
+  resources :quizzes, only: [:show, :edit, :update, :destroy] do
     resources :questions, only: [:new, :create, :index]
   end
+
+  resources :questions, only: [:destroy, :edit, :update]
 
   namespace :admin do
     resources :users, only: [:index, :destroy]

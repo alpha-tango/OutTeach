@@ -3,4 +3,8 @@ class Quiz < ActiveRecord::Base
   has_many :questions, dependent: :destroy
 
   validates :course, :title, presence: true
+
+  def user
+    self.course.user
+  end
 end
