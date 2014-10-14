@@ -33,6 +33,7 @@ class Question < ActiveRecord::Base
     self.quiz.course.user
   end
 
-  def user_answer
+  def right_answer?(answer_id)
+    answer_id.to_i == correct_answer.id
   end
 end
