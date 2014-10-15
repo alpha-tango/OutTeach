@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010153704) do
+ActiveRecord::Schema.define(version: 20141015022853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,17 @@ ActiveRecord::Schema.define(version: 20141010153704) do
     t.boolean "correct",     default: false, null: false
   end
 
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
   create_table "assignments", force: true do |t|
     t.string  "title",      null: false
     t.integer "course_id",  null: false
     t.text    "importance", null: false
     t.text    "goals",      null: false
+    t.integer "position"
   end
+
+  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "title",       null: false
@@ -38,6 +43,8 @@ ActiveRecord::Schema.define(version: 20141010153704) do
     t.integer  "user_id",     null: false
   end
 
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree
+
   create_table "elements", force: true do |t|
     t.string  "title",         null: false
     t.text    "content"
@@ -45,17 +52,24 @@ ActiveRecord::Schema.define(version: 20141010153704) do
     t.string  "citation",      null: false
     t.integer "assignment_id", null: false
     t.integer "type_id",       null: false
+    t.text    "embed"
   end
+
+  add_index "elements", ["assignment_id"], name: "index_elements_on_assignment_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.integer "quiz_id", null: false
     t.string  "text",    null: false
   end
 
+  add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
+
   create_table "quizzes", force: true do |t|
     t.string  "title",     null: false
     t.integer "course_id", null: false
   end
+
+  add_index "quizzes", ["course_id"], name: "index_quizzes_on_course_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",       null: false
