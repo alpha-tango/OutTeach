@@ -23,7 +23,7 @@ This app uses Rspec/Capybara for its test environment.
 
 [![Coverage Status](https://img.shields.io/coveralls/alpha-tango/OutTeach.svg)](https://coveralls.io/r/alpha-tango/OutTeach?branch=master)
 
-[!Test Status](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)
+[![Test Status](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)
 
 ### Issues or Suggestions?
 
