@@ -9,7 +9,7 @@ feature 'guest registration' do
     fill_in "user_name", with: user.name
     fill_in "Password", with: user.password
     fill_in "Password confirmation", with: user.password
-    click_button "Sign up"
+    click_button "SIGN UP"
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
   end
@@ -22,7 +22,7 @@ feature 'user login' do
 
     fill_in "Email" , with: user.email
     fill_in "Password", with: user.password
-    click_button "Log in"
+    click_button "LOG IN"
 
     expect(page).to have_content("Signed in successfully.")
     expect(page).to have_content("Logout")

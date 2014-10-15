@@ -10,6 +10,7 @@
       <%= link_to "Delete Assignment", assignment_path(@assignment),
           method: :delete,
           data: { confirm: 'Are you sure you want to delete this assignment and all its content?' } %><br>
+    <% elsif @assignment.user == current_user %>
       <%= link_to "Update Assignment Info", edit_assignment_path(@assignment) %>
     <% else %>
       <p>

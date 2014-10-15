@@ -8,8 +8,8 @@ feature 'view a user profile do' do
 
     visit user_path(user)
 
-    expect(page).to have_content(user.name)
-    expect(page).to have_content(user.created_at)
+    expect(page).to have_content(user.name.upcase)
+    expect(page).to have_content(user.created_at.strftime("%b %d, %Y"))
 
     @courses.each do |course|
       expect(page).to have_content(course.title)
