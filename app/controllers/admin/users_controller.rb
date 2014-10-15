@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    if user.destroy
+    if current_user.admin? && user.destroy
       flash[:notice] = "User deleted"
     else
       flash[:alert] = "An error occurred. Please try again later."

@@ -32,11 +32,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = Question.includes(:quiz).find(params[:id])
-    if question.user == current_user
-      @question = question
-    end
-    if @question.destroy
+    @question = Question.includes(:quiz).find(params[:id])
+    if current_user.may_destroy?(@question) && @question.destroy
       redirect_to quiz_path(@question.quiz)
       flash[:notice]="Question deleted"
     else
