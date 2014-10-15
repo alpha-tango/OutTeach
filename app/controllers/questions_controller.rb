@@ -12,14 +12,14 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    question = Question.find(params[:id])
+    question = Question.includes(:answers).find(params[:id])
     if question.user == current_user
       @question = question
     end
   end
 
   def update
-    question = Question.find(params[:id])
+    question = Question.includes(:answers, :quiz).find(params[:id])
     if question.user == current_user
       @question = question
     end
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:id])
+    question = Question.includes(:quiz).find(params[:id])
     if question.user == current_user
       @question = question
     end

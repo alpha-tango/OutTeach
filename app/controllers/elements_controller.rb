@@ -19,7 +19,7 @@ class ElementsController < ApplicationController
   end
 
   def destroy
-    element = Element.find(params[:id])
+    element = Element.includes(:assignment).find(params[:id])
     if element.user == current_user
       @element = element
     end
@@ -36,14 +36,14 @@ class ElementsController < ApplicationController
   end
 
   def edit
-    element = Element.find(params[:id])
+    element = Element.includes(:assignment).find(params[:id])
     if element.user == current_user
       @element = element
     end
   end
 
   def update
-    element = Element.find(params[:id])
+    element = Element.includes(:assignment).find(params[:id])
     if element.user == current_user
       @element = element
     end
