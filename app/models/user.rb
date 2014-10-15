@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def admin?
     role == 'admin'
   end
+
+  def may_destroy?(resource)
+    resource.user == self || self.admin?
+  end
 end

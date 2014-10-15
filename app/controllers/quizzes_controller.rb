@@ -34,7 +34,7 @@ class QuizzesController < ApplicationController
 
   def destroy
     @quiz = Quiz.includes(:course).find(params[:id])
-    if @quiz.user == current_user && @quiz.destroy
+    if current_user.may_destroy?(@quiz) && @quiz.destroy
       redirect_to course_path(@quiz.course)
       flash[:notice] = "Quiz deleted"
     else

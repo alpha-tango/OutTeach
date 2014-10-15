@@ -19,11 +19,8 @@ class ElementsController < ApplicationController
   end
 
   def destroy
-    element = Element.includes(:assignment).find(params[:id])
-    if element.user == current_user
-      @element = element
-    end
-    if @element.destroy
+    @element = Element.includes(:assignment).find(params[:id])
+    if current_user.may_destroy?(@element) && @element.destroy
       redirect_to assignment_path(@element.assignment)
       flash[:notice]="Element deleted"
     else
