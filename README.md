@@ -1,6 +1,17 @@
 == README
 
-[![Coverage Status](https://coveralls.io/repos/alpha-tango/OutTeach/badge.png?branch=coveralls)](https://coveralls.io/r/alpha-tango/OutTeach?branch=coveralls)
+# OUTTEACH
+
+## About the App
+
+## Setup
+
+## Testing
+
+
+## Issues or Suggestions
+
+
 
 
 This README would normally document whatever steps are necessary to get the
