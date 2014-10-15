@@ -21,9 +21,9 @@ Built in Rails/PostGreSQL.
 
 This app uses Rspec/Capybara for its test environment.
 
-[![Coverage Status](https://coveralls.io/repos/alpha-tango/OutTeach/badge.png?branch=master)
+[![Coverage Status](https://coveralls.io/repos/alpha-tango/OutTeach/badge.png?branch=master)(https://coveralls.io/repos/alpha-tango/OutTeach/badge.png?branch=master)]
 
-[!Test Status](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)
+[!Test Status](https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)(https://travis-ci.org/alpha-tango/OutTeach.svg?branch=master)]
 
 ### Issues or Suggestions?
 
