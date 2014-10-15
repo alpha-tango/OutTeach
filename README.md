@@ -2,37 +2,31 @@
 
 # OUTTEACH
 
-## About the App
+### About the App
 
-## Setup
+OUTTEACH is an open courseware app that allows users to create courses and share their knowledge. Users can...
+* create a course and add assignments or multiple-choice quizzes to it
+* embed videos, pictures, markdown or 'tip boxes' in their courses
+* work through another user's courses and take quizzes
 
-## Testing
+Built in Rails/PostGreSQL.
 
+### Setup
 
-## Issues or Suggestions
+* clone down the app: `git clone https://github.com/alpha-tango/OutTeach.git`
+* set up the database: `rake db:setup`
+* you're all set!
 
+### Testing
 
+This app uses Rspec/Capybara for its test environment.
 
+[![Coverage Status](https://coveralls.io/repos/alpha-tango/OutTeach/badge.png?branch=master)](https://coveralls.io/r/alpha-tango/OutTeach?branch=master)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Issues or Suggestions?
 
-Things you may want to cover:
+Please add them to the [issues page](https://github.com/alpha-tango/OutTeach/issues), where you can also see a list of planned enhancements.
 
-* Ruby version
+### Screenshots
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+...are coming soon!
