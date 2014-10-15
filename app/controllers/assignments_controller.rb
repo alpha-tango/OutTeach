@@ -20,12 +20,12 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.includes(:course, :elements).find(params[:id])
     @element = Element.new
   end
 
   def destroy
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.includes(:course).find(params[:id])
     if @assignment.user == current_user && @assignment.destroy
       redirect_to course_path(@assignment.course)
       flash[:notice] = "Assignment deleted"

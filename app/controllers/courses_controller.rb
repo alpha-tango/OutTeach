@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @courses = Course.all
+    @courses = Course.includes(:user).all
   end
 
   def new
@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.includes(:assignments, :quizzes).find(params[:id])
+    @course = Course.includes(:assignments, :quizzes, :user).find(params[:id])
     @assignment = Assignment.new
     @quiz = Quiz.new
   end
