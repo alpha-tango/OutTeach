@@ -60,8 +60,10 @@ h3 {
 .large-3 {
   text-align: right;
   border-right: solid 10px #6f6f6f;
-  padding-right: 20px;
-  margin: 20px 0px 20px 0px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 30px 0px 20px 0px;
   font-weight: 900;
   vertical-align: middle;
 }
@@ -72,6 +74,10 @@ h3 {
 
 .large-9 {
   vertical-align: middle;
+  padding-left: 30px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 .course-info,
@@ -103,8 +109,16 @@ h3 {
 }
 
 .large-9 > h4,
+.large-9 > h4 > a,
 .body > .large-9 > h4 > a {
   color: #0099FF;
+  font-size: 150%;
+  font-weight: 400;
+}
+
+.large-9 > h4 > a:hover,
+.body > .large-9 > h4 > a:hover {
+  color: #0066FF;
   font-size: 150%;
   font-weight: 400;
 }
@@ -112,6 +126,8 @@ h3 {
 .body > .tipbox {
   border: 3px solid #FF3399;
   background-color: #FF7373;
+  width: 23%;
+  margin-right: 1%;
 }
 
 #info {
@@ -125,6 +141,25 @@ h3 {
 
 #info > .large-3 > h3 {
   color: #E8E8E8;
+}
+
+#info > .large-3 > h3 {
+  color: #E8E8E8;
+}
+
+#info > .large-9 > h4 {
+  padding-top: 1.4em;
+  color: #E8E8E8;
+}
+
+#info > .large-9 > h4 >a {
+  padding-top: 1.4em;
+  color: #6f6f6f;
+  font-weight: 700;
+}
+
+#about {
+  margin-bottom: 20px;
 }
 
 #about > .large-3 {
@@ -162,7 +197,7 @@ body {
 #title {
   background-color: black;
   align: middle;
-  height: 80%;
+  height: 700px;
 }
 
 #title > #outteach,
@@ -170,15 +205,27 @@ body {
   background-color: black;
 }
 
+#about > .large-9 > h4 > a {
+  color: #0099FF;
+  font-size: 120%;
+  font-weight: 700;
+}
+
+#about > .large-9 > h4 > a:hover {
+  color: #0066FF;
+  font-size: 120%;
+  font-weight: 700;
+}
+
 #title > h1 {
   align: middle;
   text-align: center;
   font-weight: 700;
   font-size: 70px;
-  padding: 40px 0px 40px 0px;
-  margin: 25px 400px 0px 400px;
+  padding: 25px 0px 30px 0px;
+  margin: 10px 300px 50px 300px;
   background-color: #0077FF;
-  border-radius: 1000px;
+  border-radius: 80px;
 }
 
 .members, .admin {
@@ -192,6 +239,17 @@ body {
 
 .members > .large-9 > p > a {
   color: red;
+}
+
+#how > .large-9 {
+  color: #6f6f6f;
+  vertical-align: middle;
+}
+
+#how > .large-9 > h4 {
+  color: #6f6f6f;
+  vertical-align: middle;
+  padding-top: 1.2em;
 }
 
 .members > .large-3 {
@@ -208,4 +266,17 @@ body {
 
 .admin > .large-3 > h3 {
   color: purple;
+}
+
+#login {
+  margin-top: 60px;
+}
+
+#user > .large-9 > ul {
+  list-style: none;
+}
+
+#user > .large-9 > ul > li> a {
+  color: #0077FF;
+  font-weight: bold;
 }
