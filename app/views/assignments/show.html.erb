@@ -82,21 +82,21 @@
       <% end %>
         <p>
           <%= f.label :type_id, "Element Type" %>
-          <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]] %>
+          <%= f.select :type_id, options=[["Text", 1], ["Tipbox", 2], ["Image", 3], ["Video", 4], ["Markdown", 5]], class: 'select-el' %>
         </p>
         <p>
           <%= f.label :title %>
           <%= f.text_field :title %>
         </p>
-        <p>
+        <p id='el-url', style="display:none">
           <%= f.label :url %>
           <%= f.text_field :url %>
         </p>
-        <p>
+        <p id= 'el-content'>
           <%= f.label :content %>
           <%= f.text_area :content %>
         </p>
-        <p>
+        <p id= 'el-embed', style="display:none">
           <%= f.label :video_embed %>
           <%= f.text_area :video_embed %>
         </p>
