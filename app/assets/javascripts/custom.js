@@ -14,4 +14,16 @@ $(document).ready(function(){
       $('#el-embed').hide();
     }
   });
-})
+
+  $('#add_new_assignment').click(function(event) {
+    event.preventDefault();
+    $(this).hide();
+    $('.new-assignment').show();
+  });
+
+  $('#add_new_quiz').click(function(event) {
+    event.preventDefault();
+    $(this).hide();
+    $('.new-quiz').show();
+  });
+});
