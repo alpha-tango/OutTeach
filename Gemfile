@@ -36,6 +36,8 @@ group :development, :test do
   gem 'pry-rails'
   gem "dotenv-rails"
   gem 'launchy'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
 group :production do

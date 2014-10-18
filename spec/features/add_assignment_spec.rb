@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'add a new assignment' do
+feature 'add a new assignment', focus: true, js: true do
 
   before(:each) do
     @course = FactoryGirl.create(:course)
