@@ -3,6 +3,7 @@ class Assignment < ActiveRecord::Base
   has_many :elements, dependent: :destroy
 
   validates :title, :course, :importance, :goals, presence: true
+  validates :title, length: { minimum: 3 }
 
   def user
     self.course.user
