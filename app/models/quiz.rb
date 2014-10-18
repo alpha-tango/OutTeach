@@ -3,6 +3,7 @@ class Quiz < ActiveRecord::Base
   has_many :questions, dependent: :destroy
 
   validates :course, :title, presence: true
+  validates :title, length: { minimum: 3 }
 
   def user
     self.course.user

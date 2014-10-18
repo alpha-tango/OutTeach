@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :quiz
   has_many :answers, dependent: :destroy
   validates :quiz, :text, presence: true
+  validates :text, length: { minimum: 5 }
 
   def correct_answer
     self.answers.where(correct: true).first || self.answers.build(correct: true)
