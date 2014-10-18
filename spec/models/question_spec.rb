@@ -1,10 +1,11 @@
-# require 'rails_helper'
-#
-# describe Question, type: :model do
-#   it { should validate_presence_of :text }
-#   it { should validate_presence_of :quiz }
-#   it { should have_many :answers }
-#
+require 'rails_helper'
+
+describe Question, type: :model do
+  it { should validate_presence_of :text }
+  it { should validate_presence_of :quiz }
+  it { should have_many :answers }
+  it { should ensure_length_of(:text).is_at_least(5) }
+
 #   describe "#answers" do
 #     let!(:question) { FactoryGirl.create(:question) }
 #     let(:wrong_answers) { FactoryGirl.create_list(:answer, 3, question: question, correct: false) }
@@ -30,4 +31,4 @@
 #   describe "#correct_answer=" do
 #     it "should change the correct answer"
 #   end
-# end
+end
