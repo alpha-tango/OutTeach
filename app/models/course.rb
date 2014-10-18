@@ -3,8 +3,8 @@ class Course < ActiveRecord::Base
   has_many :quizzes, dependent: :destroy
   belongs_to :user
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { minimum: 3 }
+  validates :description, presence: true, length: { minimum: 10 }
   validates :subject, presence: true
   validates :user, presence: true
 
