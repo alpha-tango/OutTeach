@@ -1,14 +1,14 @@
 class Element < ActiveRecord::Base
   belongs_to :assignment
+  default_scope { order('created_at ASC') }
 
   validates :title, :citation, :assignment, :type_id, presence: true
   validates :title, length: { minimum: 3 }
   validates :citation, length: { minimum: 3 }
-  
+
   def user
     self.assignment.course.user
   end
-
 
   def video_embed
     if self.url
