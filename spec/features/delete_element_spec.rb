@@ -6,7 +6,7 @@ feature 'user deletes an element' do
     sign_in_as(element.user)
     visit assignment_path(element.assignment)
 
-    click_link "Delete Element"
+    click_link "DELETE ELEMENT"
 
     expect(page).to have_content("Element deleted")
     expect(page).to_not have_content(element.title)
