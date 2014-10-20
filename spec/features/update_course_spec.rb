@@ -10,7 +10,7 @@ feature 'user updates a course' do
     fill_in "Subject", with: "new subject"
     fill_in "Description", with: "new description"
 
-    click_button "Update Course"
+    click_button "UPDATE COURSE"
 
     expect(page).to have_content("changes have been saved")
     expect(page).to have_content("new title".upcase)
@@ -27,7 +27,7 @@ feature 'user updates a course' do
     fill_in "Subject", with: ""
     fill_in "Description", with: ""
 
-    click_button "Update Course"
+    click_button "UPDATE COURSE"
 
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Subject can't be blank")
