@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   validates :quiz, :text, presence: true
   validates :text, length: { minimum: 5 }
+  default_scope { order('created_at ASC') }
 
   def correct_answer
     self.answers.where(correct: true).first || self.answers.build(correct: true)
