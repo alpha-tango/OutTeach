@@ -19,5 +19,21 @@
         This user hasn't authored any courses yet!
        <% end %>
     <% end %>
+
+    <h4>courses enrolled in:</h4>
+    <% if @enrollments.any? %>
+      <ul>
+        <% @enrollments.each do |enrollment| %>
+          <li><%= link_to enrollment.course.title,
+           course_path(enrollment.course) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+       <% if @user == current_user %>
+        You aren't enrolled in any courses yet!
+       <% else %>
+        This user hasn't enrolled in any courses yet!
+       <% end %>
+    <% end %>
   </div>
 </div>

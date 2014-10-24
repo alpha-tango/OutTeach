@@ -13,7 +13,7 @@
     <% else %>
       <p>
         created by: <%= link_to @course.user.name, user_path(@course.user) %><br>
-        last updated at: <%= @course.updated_at %>
+        last updated at: <%= @course.updated_at.strftime("%b %d, %Y") %>
       </p>
     <% end %>
   </div>
@@ -43,6 +43,21 @@
       <% @course.quizzes.each do |quiz| %>
         <h4>
           <%= link_to quiz.title, quiz_path(quiz) %>
+        </h4>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='large-3 columns'>
+    <h3>STUDENTS</h3>
+  </div>
+  <div class='large-9 columns'>
+    <% if @course.enrollments.any? %>
+      <% @course.enrollments.each do |enrollment| %>
+        <h4>
+          <%= link_to enrollment.user.name, user_path(enrollment.user) %>
         </h4>
       <% end %>
     <% end %>

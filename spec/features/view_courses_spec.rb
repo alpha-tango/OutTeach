@@ -21,10 +21,10 @@ feature 'users views courses' do
   scenario 'user views course details' do
     visit course_path(@course)
 
-    expect(page).to have_content(@course.title)
-    expect(page).to have_content(@course.subject)
+    expect(page).to have_content(@course.title.upcase)
+    expect(page).to have_content(@course.subject.upcase)
     expect(page).to have_content(@course.description)
-    expect(page).to have_content(@course.created_at.strftime("%b %d, %Y"))
+    expect(page).to have_content(@course.updated_at.strftime("%b %d, %Y"))
 
     @course.enrollments.each do |enrollment|
       expect(page).to have_content(enrollment.user.name)
