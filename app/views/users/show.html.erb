@@ -1,16 +1,24 @@
 <div id= 'user' class='row'>
   <div class='large-3 columns'>
     <h3><%= @user.name.upcase %></h3>
-    member since:<br> <%= @user.created_at.strftime("%b %d, %Y") %><br>
   </div>
   <div class='large-9 columns'>
-    <h4>courses authored:</h4>
+    <% if @user == current_user %>
+      <h4>That's you!</h4>
+      <h4>email:</h4> <%= @user.email %>
+    <% end %>
+    <h4>member since:</h4> <%= @user.created_at.strftime("%b %d, %Y") %><br>
+  </div>
+</div>
+<div id='about' class='row'>
+  <div class='large-3 columns'>
+    <h3>COURSES<br>AUTHORED</h3>
+  </div>
+  <div class='large-9 columns'>
     <% if @user.courses.any? %>
-      <ul>
         <% @user.courses.each do |course| %>
-          <li><%= link_to course.title, course_path(course) %></li>
+          <h4><%= link_to course.title, course_path(course) %></h4>
         <% end %>
-      </ul>
     <% else %>
        <% if @user == current_user %>
         You haven't created any courses yet!
