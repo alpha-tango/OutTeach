@@ -49,6 +49,21 @@
   </div>
 </div>
 
+<div class='row'>
+  <div class='large-3 columns'>
+    <h3>STUDENTS</h3>
+  </div>
+  <div class='large-9 columns'>
+    <% if @course.enrollments.any? %>
+      <% @course.enrollments.each do |enrollment| %>
+        <h4>
+          <%= link_to enrollment.user.name, user_path(enrollment.user) %>
+        </h4>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <% if @course.user == current_user || current_user.admin? %>
   <div class='new-assignment row'>
     <div class='large-3 columns'>

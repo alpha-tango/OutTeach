@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :assignments, dependent: :destroy
   has_many :quizzes, dependent: :destroy
+  has_many :enrollments
   belongs_to :user
 
   validates :title, presence: true, length: { minimum: 3 }
