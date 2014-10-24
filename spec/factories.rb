@@ -5,6 +5,11 @@ FactoryGirl.define do
     password "12345678"
   end
 
+  factory :enrollment do
+    association :user
+    association :course
+  end
+
   factory :course do
     title "All About Interwebs"
     subject "Interwebs"
