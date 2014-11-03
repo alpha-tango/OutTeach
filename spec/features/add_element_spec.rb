@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'add a new element' do
+feature 'add a new element', js: true do
 
   before(:each) do
     @assignment = FactoryGirl.create(:assignment)
