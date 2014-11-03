@@ -26,4 +26,11 @@ $(document).ready(function(){
     $(this).hide();
     $('.new-quiz').show();
   });
+
+  $(function(){
+    if($('.large-9 #new-assignment #error_explanation').length){
+      $('.new-assignment').removeAttr('style');
+      $('#add_new_assignment').hide();
+    }
+  });
 });
