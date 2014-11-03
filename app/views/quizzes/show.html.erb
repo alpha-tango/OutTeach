@@ -20,15 +20,18 @@
 <% if @quiz.questions.any? %>
   <% if @quiz.user == current_user || current_user.admin? %>
     <div class='quiz row'>
-      <div class='large-3 columns'>
-      </div>
+      <div class='large-3 columns'></div>
       <div class='large-9 columns'>
         <% @quiz.questions.each do |question| %>
             <h4><%= question.text %></h4>
             <%= render partial: 'quizzes/delete_question', locals: { quiz: @quiz, question: question } %>
             <ol>
-              <% question.answers.pluck(:text).each do |answer| %>
-                <li><%= answer %></li>
+              <% question.answers.each do |answer| %>
+                <li><%= answer.text %>
+                <% if answer.correct %>
+                  <span class='button tiny correct'>CORRECT</span>
+                <% end %>
+                </li>
               <% end %>
             </ol>
         <% end %>

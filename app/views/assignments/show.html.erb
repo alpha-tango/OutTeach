@@ -22,44 +22,53 @@
 
 <% if @assignment.elements.any? %>
 <div class='body row'>
-  <% @assignment.elements.each do |element| %>
-    <% if element.type_id == 1 %>
-      <div class="text large-9 columns">
-        <h4> <%= element.title %> </h4>
-        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <p> <%= element.content %> <p>
-        <strong> <%= element.citation %> </strong>
-      </div>
-    <% elsif element.type_id == 2 %>
-      <div class="tipbox large-3 columns">
-        <h4> <%= element.title %> </h4>
-        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <%= element.content %>
-        <strong> <%= element.citation %> </strong>
-      </div>
-    <% elsif element.type_id == 3 %>
-      <div class="image large-9 columns">
-        <h4> <%= element.title %> </h4>
-        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <%= image_tag(element.url) %><br>
-        <strong> <%= element.citation %> </strong>
-      </div>
-    <% elsif element.type_id == 4 %>
-      <div class="video large-9 columns">
-        <h4> <%= element.title %> </h4>
-        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <iframe src=<%= "http:#{element.url}"%> width="560" height="315" ></iframe><br>
-        <strong> <%= element.citation %> </strong>
-      </div>
-    <% elsif element.type_id == 5 %>
-      <div class="markdown large-9 columns">
-        <h4> <%= element.title %> </h4>
-        <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
-        <%= kramdown(element.content) %>
-        <strong> <%= element.citation %> </strong>
-      </div>
+  <div class='large-3 columns'></div>
+  <div class='large-9 columns'>
+    <% @assignment.elements.each do |element| %>
+      <% if element.type_id == 1 %>
+        <div class="text">
+          <h4> <%= element.title %> </h4>
+          <%= render partial: 'assignments/delete_element', locals: { assignment: @assignment, element: element } %>
+          <p> <%= element.content %> <p>
+          <strong>Source: </strong><%= element.citation %>
+        </div>
+      <% elsif element.type_id == 2 %>
+        <div class="tipbox">
+          <h4> <%= element.title %> </h4>
+          <%= render partial: 'assignments/delete_element',
+          locals: { assignment: @assignment, element: element } %>
+          <%= element.content %><br>
+          <strong>Source: </strong><%= element.citation %>
+        </div>
+      <% elsif element.type_id == 3 %>
+        <div class="image">
+          <h4> <%= element.title %> </h4>
+          <%= render partial: 'assignments/delete_element',
+          locals: { assignment: @assignment, element: element } %>
+          <%= image_tag(element.url) %><br>
+          <strong>Source: </strong><%= element.citation %>
+        </div>
+      <% elsif element.type_id == 4 %>
+        <div class="video">
+          <h4> <%= element.title %> </h4>
+          <%= render partial: 'assignments/delete_element',
+          locals: { assignment: @assignment, element: element } %>
+          <iframe
+          src=<%= "http:#{element.url}"%> width="560" height="315" >
+          </iframe><br>
+          <strong>Source: </strong><%= element.citation %>
+        </div>
+      <% elsif element.type_id == 5 %>
+        <div class="markdown">
+          <h4> <%= element.title %> </h4>
+          <%= render partial: 'assignments/delete_element',
+          locals: { assignment: @assignment, element: element } %>
+          <%= kramdown(element.content) %><br>
+          <strong>Source: </strong><%= element.citation %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 <% end %>
 <% if @assignment.user == current_user || current_user.admin? %>
@@ -71,8 +80,9 @@
       <%= form_for [@assignment, @element] do |f| %>
         <% if @element.errors.any? %>
         <div id="error_explanation">
-          <p class="alert-box alert"><%= pluralize(@element.errors.count, "error") %> prohibited this post from being saved:</p>
-
+          <p class="alert-box alert">
+          <%= pluralize(@element.errors.count, "error") %>
+           prohibited this post from being saved:</p>
           <ul>
           <% @element.errors.full_messages.each do |msg| %>
             <li class="alert-box secondary"><%= msg %></li>

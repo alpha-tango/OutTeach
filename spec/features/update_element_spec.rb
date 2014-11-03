@@ -15,7 +15,7 @@ feature 'update element' do
 
     fill_in "Title", with: "New Title"
     select "Markdown", from: "element_type_id"
-    click_button "Update Element"
+    click_button "UPDATE ELEMENT"
 
     expect(page).to have_content("updated")
     within('div.markdown') do

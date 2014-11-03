@@ -24,7 +24,7 @@ feature 'user login' do
     fill_in "Password", with: user.password
     click_button "LOG IN"
 
-    expect(page).to have_content("Signed in successfully.")
+    expect(page).to have_content("Welcome back!")
     expect(page).to have_content("Logout")
   end
 end

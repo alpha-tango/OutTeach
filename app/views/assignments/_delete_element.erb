@@ -1,14 +1,14 @@
 <% if assignment.user == current_user || current_user.admin? %>
   <ul class='button-group'>
-    <li><%= link_to "Delete Element",
+    <li><%= link_to "DELETE ELEMENT",
             element_path(element),
             method: :delete,
             data: { confirm: 'Are you sure you want to delete this element?' },
-            class: 'button' %>
+            class: 'button tiny' %>
     </li>
-    <li><%= link_to "Edit Element",
+    <li><%= link_to "EDIT ELEMENT",
             edit_element_path(element),
-            class: 'button' %>
+            class: 'button tiny' %>
     </li>
   </ul>
 <% end %>
