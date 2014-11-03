@@ -33,4 +33,11 @@ $(document).ready(function(){
       $('#add_new_assignment').hide();
     }
   });
+
+  $(function(){
+    if($('.large-9 #new-quiz #error_explanation').length){
+      $('.new-quiz').removeAttr('style');
+      $('#add_new_quiz').hide();
+    }
+  });
 });

@@ -25,7 +25,7 @@ feature 'add a new assignment', js: true do
     expect(page).to have_content(assignment.title)
   end
 
-  scenario 'add a blank assignment', focus: true do
+  scenario 'add a blank assignment' do
     visit course_path(@course)
     click_link "+ add a new assignment"
 
