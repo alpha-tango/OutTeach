@@ -1,20 +1,22 @@
-<%= form_for [course, quiz] do |f| %>
-  <% if quiz.errors.any? %>
-  <div id="error_explanation">
-    <p class="alert-box alert"><%= pluralize(quiz.errors.count, "error") %> prohibited this post from being saved:</p>
+<div id='new-quiz'>
+  <%= form_for [course, quiz] do |f| %>
+    <% if quiz.errors.any? %>
+    <div id="error_explanation">
+      <p class="alert-box alert"><%= pluralize(quiz.errors.count, "error") %> prohibited this post from being saved:</p>
 
-    <ul>
-    <% quiz.errors.full_messages.each do |msg| %>
-      <li class="alert-box secondary"><%= msg %></li>
+      <ul>
+      <% quiz.errors.full_messages.each do |msg| %>
+        <li class="alert-box secondary"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-    </ul>
-  </div>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.submit "CREATE QUIZ", class: 'button' %>
+    </p>
   <% end %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.submit "CREATE QUIZ", class: 'button' %>
-  </p>
-<% end %>
+</div>

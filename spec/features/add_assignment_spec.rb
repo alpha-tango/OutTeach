@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'add a new assignment' do
+feature 'add a new assignment', js: true do
 
   before(:each) do
     @course = FactoryGirl.create(:course)
@@ -10,6 +10,8 @@ feature 'add a new assignment' do
   scenario 'add a valid assignment' do
     visit course_path(@course)
     assignment = FactoryGirl.build(:assignment, course: @course)
+
+    click_link "+ add a new assignment"
 
     within 'div.new-assignment' do
       fill_in "Title", with: assignment.title
@@ -25,6 +27,7 @@ feature 'add a new assignment' do
 
   scenario 'add a blank assignment' do
     visit course_path(@course)
+    click_link "+ add a new assignment"
 
     within 'div.new-assignment' do
       click_button "CREATE ASSIGNMENT"

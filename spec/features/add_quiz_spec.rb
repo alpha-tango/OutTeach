@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'add a new quiz' do
+feature 'add a new quiz', js: true do
 
   before(:each) do
     @course = FactoryGirl.create(:course)
@@ -10,6 +10,7 @@ feature 'add a new quiz' do
   scenario 'add a valid quiz' do
     quiz = FactoryGirl.build(:quiz)
     visit course_path(@course)
+    click_link "+ add a new quiz"
 
     within 'div.new-quiz' do
       fill_in "Title", with: quiz.title
@@ -23,6 +24,7 @@ feature 'add a new quiz' do
 
   scenario 'add a blank quiz' do
     visit course_path(@course)
+    click_link "+ add a new quiz"
 
     within 'div.new-quiz' do
       click_button "CREATE QUIZ"
